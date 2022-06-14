@@ -212,6 +212,14 @@
             - redhat.vscode-yaml
             - vscjava.vscode-java-pack
 
+        - name: Copy my vscodium config file
+          copy: 
+            src: files/vscodium-config.json
+            dest: /home/{{ ansible_user_id }}/.config/VSCodium/User/settings.json
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: 0644
+
     - block:
         - name: Verify if Oh-My-zsh is installed
           command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
@@ -245,5 +253,5 @@
         - name: Add git, docker-compose and maven plugins to zshrc
           lineinfile:
             path: /home/{{ ansible_user_id }}/.zshrc
-            regexp: '^plugins='
-            line: 'plugins=(git docker-compose mvn)'
+            regexp: "^plugins="
+            line: "plugins=(git docker-compose mvn)"
