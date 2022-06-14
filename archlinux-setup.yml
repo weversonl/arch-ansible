@@ -148,6 +148,7 @@
             - mlocate
             - man-db
             - tree
+            - vagrant
 
     - block:
         - name: Adding existing user to group Docker
