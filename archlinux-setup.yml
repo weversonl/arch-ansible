@@ -1,0 +1,215 @@
+---
+- name: archlinux setup
+  hosts: localhost
+  connection: local
+  tasks:
+    - block:
+        - name: Include multilib repository
+          become: true
+          lineinfile:
+            path: /etc/pacman.conf
+            line: "[multilib]\nInclude = /etc/pacman.d/mirrorlist"
+            state: present
+
+        - name: Include ILoveCandy progress bar
+          become: true
+          lineinfile:
+            path: /etc/pacman.conf
+            line: "ILoveCandy"
+            state: present
+
+        - name: Include Color
+          become: true
+          lineinfile:
+            path: /etc/pacman.conf
+            regexp: "^#Color"
+            line: "Color"
+
+        - name: Include ParallelDownloads
+          become: true
+          lineinfile:
+            path: /etc/pacman.conf
+            regexp: "^#ParallelDownloads"
+            line: "ParallelDownloads = 8"
+
+        - name: Install arch linux keyring
+          become: true
+          pacman:
+            name: archlinux-keyring
+            state: present
+
+        - name: Full system update
+          become: true
+          pacman:
+            update_cache: yes
+            upgrade: yes
+
+        - name: Remove conflict packages
+          become: true
+          pacman:
+            name:
+              - nvidia
+              - pulseaudio
+              - jack2
+            state: removed
+            force: yes
+
+        - name: Install packages
+          become: true
+          pacman:
+            name: "{{ item }}"
+            state: present
+          loop:
+            - base-devel
+            - linux-headers
+            - nvidia-dkms
+            - nvidia-utils
+            - lib32-nvidia-utils
+            - git
+            - curl
+            - wget
+            - net-tools
+            - openssh
+            - tmux
+            - zip
+            - unzip
+            - unrar
+            - p7zip
+            - android-tools
+            - rclone
+            - youtube-dl
+            - hping
+            - nmap
+            - whois
+            - tor
+            - go
+            - jdk-openjdk
+            - maven
+            - mariadb
+            - postgresql
+            - docker
+            - docker-compose
+            - pacman-contrib
+            - bash-completion
+            - btop
+            - cpupower
+            - ttf-inconsolata
+            - ttf-cascadia-code
+            - ttf-fira-code
+            - ttf-fira-mono
+            - gedit
+            - gparted
+            - gnome-tweaks
+            - grub-customizer
+            - flameshot
+            - qbittorrent
+            - sqlitebrowser
+            - firefox
+            - lutris
+            - scrcpy
+            - peek
+            - telegram-desktop
+            - obs-studio
+            - remmina
+            - nvidia-settings
+            - nvidia-prime
+            - nvidia-cg-toolkit
+            - vulkan-headers
+            - vulkan-radeon
+            - lib32-vulkan-radeon
+            - vulkan-icd-loader
+            - lib32-vulkan-icd-loader
+            - mesa
+            - lib32-mesa
+            - figlet
+            - lolcat
+            - pipewire
+            - pipewire-alsa
+            - pipewire-jack
+            - pipewire-pulse
+            - pipewire-media-session
+            - gnome-firmware
+            - gnome-power-manager
+            - vagrant
+            - archlinux-wallpaper
+            - neovim
+            - ntfs-3g
+            - psensor
+            - upower
+            - zsh-autosuggestions
+            - zsh-completions
+            - zsh-syntax-highlighting
+            - dbeaver
+            - discord
+            - dconf
+            - dconf-editor
+            - kdiskmark
+            - gnome-logs
+            - terminator
+            - wine
+            - winetricks
+            - wine-mono
+            - wine-gecko
+            - vkd3d
+            - jq
+            - mlocate
+            - man-db
+            - tree
+
+    - block:
+        - name: Adding existing user to group Docker
+          become: true
+          user:
+            name: "{{ ansible_user_id }}"
+            groups: docker
+            append: yes
+
+    - block:
+        - name: Install YAY [AUR Helper]
+          become: true
+          aur: name=yay user={{ ansible_user_id }}
+
+        - name: Install AUR packages
+          become: true
+          aur: name={{ item }} user={{ ansible_user_id }}
+          loop:
+            - optimus-manager
+            - optimus-manager-qt
+            - gnome-text-editor
+            - ttf-meslo-nerd-font-powerlevel10k
+            - zsh-theme-powerlevel10k-git
+            - asdf-vm
+            - google-chrome
+            - teams
+            - onlyoffice-bin
+            - gammy
+
+    - block:
+        - name: Verify if Oh-My-zsh is installed
+          command: test -d /home/{{ ansible_user_id }}/.oh-my-zsh
+          register: ohmyzsh
+          ignore_errors: true
+
+        - name: Installing Oh-My-zsh
+          shell:
+            cmd: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+            warn: false
+          when: ohmyzsh.rc != 0
+
+        - name: Changing Default Shell to ZSH
+          become: yes
+          user:
+            name: "{{ ansible_user_id }}"
+            shell: /bin/zsh
+
+        - name: Include powerlevel10k and completions to zshrc
+          lineinfile:
+            path: /home/{{ ansible_user_id }}/.zshrc
+            line: "source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme\nsource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\nautoload -Uz compinit\ncompinit"
+            state: present
+
+        - name: Include asdf configurations zshrc
+          lineinfile:
+            path: /home/{{ ansible_user_id }}/.zshrc
+            line: "# ------------------------------------ ASDF ---------------------------------------------- #\n. /opt/asdf-vm/asdf.sh"
+            state: present
