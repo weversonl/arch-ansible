@@ -178,6 +178,35 @@
             - onlyoffice-bin
             - gammy
             - spotify
+            - vscodium-bin
+
+    - block:
+      - name: Install vscodium extensions
+        shell:
+          cmd: codium --install-extension '{{ item }}'
+        loop:
+          - formulahendry.code-runner
+          - vscjava.vscode-java-debug
+          - ms-azuretools.vscode-docker
+          - dracula-theme.theme-dracula
+          - markwylde.vscode-filesize
+          - redhat.java
+          - GabrielBB.vscode-lombok
+          - PKief.material-icon-theme
+          - vscjava.vscode-maven
+          - esbenp.prettier-vscode
+          - vscjava.vscode-java-dependency
+          - ms-python.python
+          - foxundermoon.shell-format
+          - Remisa.shellman
+          - vscjava.vscode-spring-boot-dashboard
+          - Pivotal.vscode-spring-boot
+          - vscjava.vscode-spring-initializr
+          - vscjava.vscode-java-test
+          - qux-bbb.text-utils
+          - redhat.vscode-xml
+          - redhat.vscode-yaml
+          - vscjava.vscode-java-pack
 
     - block:
         - name: Verify if Oh-My-zsh is installed
