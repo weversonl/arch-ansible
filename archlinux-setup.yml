@@ -15,8 +15,8 @@
           become: true
           lineinfile:
             path: /etc/pacman.conf
+            regexp: "^#NoProgressBar"
             line: "ILoveCandy"
-            state: present
 
         - name: Include Color
           become: true
@@ -159,13 +159,17 @@
             append: yes
 
     - block:
+        - name: Add GPG Key Spotify
+          shell:
+            cmd: curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+
         - name: Install YAY [AUR Helper]
           become: true
           aur: name=yay user={{ ansible_user_id }}
 
         - name: Install AUR packages
           become: true
-          aur: name={{ item }} user={{ ansible_user_id }}
+          aur: name={{ item }} user={{ ansible_user_id }} skip_pgp=yes
           loop:
             - optimus-manager
             - optimus-manager-qt
@@ -181,32 +185,32 @@
             - vscodium-bin
 
     - block:
-      - name: Install vscodium extensions
-        shell:
-          cmd: codium --install-extension '{{ item }}'
-        loop:
-          - formulahendry.code-runner
-          - vscjava.vscode-java-debug
-          - ms-azuretools.vscode-docker
-          - dracula-theme.theme-dracula
-          - markwylde.vscode-filesize
-          - redhat.java
-          - GabrielBB.vscode-lombok
-          - PKief.material-icon-theme
-          - vscjava.vscode-maven
-          - esbenp.prettier-vscode
-          - vscjava.vscode-java-dependency
-          - ms-python.python
-          - foxundermoon.shell-format
-          - Remisa.shellman
-          - vscjava.vscode-spring-boot-dashboard
-          - Pivotal.vscode-spring-boot
-          - vscjava.vscode-spring-initializr
-          - vscjava.vscode-java-test
-          - qux-bbb.text-utils
-          - redhat.vscode-xml
-          - redhat.vscode-yaml
-          - vscjava.vscode-java-pack
+        - name: Install vscodium extensions
+          shell:
+            cmd: codium --install-extension '{{ item }}'
+          loop:
+            - formulahendry.code-runner
+            - vscjava.vscode-java-debug
+            - ms-azuretools.vscode-docker
+            - dracula-theme.theme-dracula
+            - markwylde.vscode-filesize
+            - redhat.java
+            - GabrielBB.vscode-lombok
+            - PKief.material-icon-theme
+            - vscjava.vscode-maven
+            - esbenp.prettier-vscode
+            - vscjava.vscode-java-dependency
+            - ms-python.python
+            - foxundermoon.shell-format
+            - Remisa.shellman
+            - vscjava.vscode-spring-boot-dashboard
+            - Pivotal.vscode-spring-boot
+            - vscjava.vscode-spring-initializr
+            - vscjava.vscode-java-test
+            - qux-bbb.text-utils
+            - redhat.vscode-xml
+            - redhat.vscode-yaml
+            - vscjava.vscode-java-pack
 
     - block:
         - name: Verify if Oh-My-zsh is installed
@@ -237,3 +241,9 @@
             path: /home/{{ ansible_user_id }}/.zshrc
             line: "# ------------------------------------ ASDF ---------------------------------------------- #\n. /opt/asdf-vm/asdf.sh"
             state: present
+
+        - name: Add git, docker-compose and maven plugins to zshrc
+          lineinfile:
+            path: /home/{{ ansible_user_id }}/.zshrc
+            regexp: '^plugins='
+            line: 'plugins=(git docker-compose mvn)'
