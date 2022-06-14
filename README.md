@@ -12,7 +12,7 @@ It can be changed for each case and need. Be aware if any module/driver is not c
 
 2. Clone the repository or download the source code
 
-        git clone https://github.com/WeversonL/arch-ansible.git
+        git clone --recurse-submodules https://github.com/WeversonL/arch-ansible.git
         cd arch-ansible
 
 3. Run the palybook
