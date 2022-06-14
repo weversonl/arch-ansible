@@ -49,8 +49,6 @@
           pacman:
             name:
               - nvidia
-              - pulseaudio
-              - jack2
             state: removed
             force: yes
 
@@ -123,11 +121,6 @@
             - lib32-mesa
             - figlet
             - lolcat
-            - pipewire
-            - pipewire-alsa
-            - pipewire-jack
-            - pipewire-pulse
-            - pipewire-media-session
             - gnome-firmware
             - gnome-power-manager
             - vagrant
@@ -183,6 +176,7 @@
             - teams
             - onlyoffice-bin
             - gammy
+            - spotify
 
     - block:
         - name: Verify if Oh-My-zsh is installed
