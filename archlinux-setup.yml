@@ -255,3 +255,12 @@
             path: /home/{{ ansible_user_id }}/.zshrc
             regexp: "^plugins="
             line: "plugins=(git docker-compose mvn)"
+
+    - block:
+        - name: Copy my personal binaries to local/bin
+          copy: 
+            src: files/bin/
+            dest: /home/{{ ansible_user_id }}/.local/bin/
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx

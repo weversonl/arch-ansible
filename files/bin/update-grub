@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if (( $(id -u) != 0 )); then
+  echo "Run as sudo";
+  exit
+fi
+
+grub-mkconfig -o /boot/grub/grub.cfg

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+MODE=$1
+
+if [[ -z $MODE ]]; then
+  echo "night-mode on [Para habilitar o modo noturno]"
+  echo "night-mode off [Para desabilitar o modo noturno]"
+  exit
+fi
+
+if [[ $MODE == "on" ]]; then
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+fi
+
+if [[ $MODE == "off" ]]; then
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
+fi

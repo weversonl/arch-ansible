@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+PROGRAM_NAME="rastreio"
+
+# URL
+SERVICE_URL="https://proxyapp.correios.com.br/v1/sro-rastro"
+
+# Colours Variables
+RESTORE='\033[0m'
+CYAN='\033[00;36m'
+LCYAN='\033[01;36m'
+
+function help() {
+  echo "
+    Usage:
+    $PROGRAM_NAME YourTrackingCodes    |     [To search for objects]
+    $PROGRAM_NAME --help, -h           |     [To see this guide again]
+    "
+}
+
+function execution() {
+
+  JSON_RESPONSE=$(curl -s "$SERVICE_URL/$1" | jq -r '.objetos[0]')
+  LAST_EVENT=$(jq -r '.eventos[0]' <<<  "${JSON_RESPONSE}")
+  CODE=$(jq -r '.codObjeto' <<< "${JSON_RESPONSE}" | sed -e 's/"//g')
+  STATUS=$(jq -r '.descricao' <<< "${LAST_EVENT}" | sed -e 's/"//g')
+  HORARY=$(jq -r '.dtHrCriado' <<< "${LAST_EVENT}" | sed -e 's/"//g' | cut -b 12-16)
+  SENDER=$(jq -r '.unidade.endereco.cidade' <<< "${LAST_EVENT}" | sed -e 's/"//g' | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+  RECIPIENT=$(jq -r '.unidadeDestino.endereco.cidade' <<< "${LAST_EVENT}" | sed -e 's/"//g' | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+
+  if [[ $SENDER == Null ]]; then
+    SENDER=$(jq -r '.unidade.nome' <<< "${LAST_EVENT}" | sed -e 's/"//g' | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+  fi
+
+  if [[ $RECIPIENT == Null ]]; then
+    RECIPIENT=$(jq -r '.unidadeDestino.endereco.uf' <<< "${LAST_EVENT}" | sed -e 's/"//g' | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+    if [[ $RECIPIENT == Br ]]; then
+      RECIPIENT="Brasil"
+    elif [[ $RECIPIENT == Null ]]; then
+      RECIPIENT="Destinatário"
+    fi
+  fi
+
+  echo -e "
+    📦$RESTORE: $LCYAN \b\b $CODE
+    📌$RESTORE: $LCYAN \b\b $STATUS
+    ⏰$RESTORE: $LCYAN \b\b $HORARY
+    🛑$RESTORE: $LCYAN \b\b $SENDER 
+    🚨$RESTORE: $LCYAN \b\b $RECIPIENT
+  "
+
+}
+
+main() {
+  for var in $@; do
+    execution $var
+  done
+}
+
+case $1 in
+--help | -h)
+  help
+  exit 0
+  ;;
+esac
+
+if [[ $# -eq 0 ]]; then
+  help
+  exit 1
+fi
+
+main $@

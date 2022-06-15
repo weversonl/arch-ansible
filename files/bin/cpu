@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+MODE=$1
+
+if (( $(id -u) != 0 )); then
+  echo "Run as sudo";
+  exit
+fi
+
+if [[ -z $MODE ]]; then
+  echo "cpu desempenho [Para elevar a perfomance da CPU]"
+  echo "cpu balanceado [Para deixar equilibrado a perfomance da CPU]"
+  exit
+fi
+
+if [[ $MODE == "desempenho" ]]; then
+  cpupower frequency-set -g performance >/dev/null  
+  echo "modo desempenho ativado"
+fi
+
+if [[ $MODE == "balanceado" ]]; then
+  cpupower frequency-set -g powersave >/dev/null 
+  echo "modo balanceado ativado"
+fi
