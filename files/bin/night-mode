@@ -2,16 +2,24 @@
 
 MODE=$1
 
-if [[ -z $MODE ]]; then
+function help () {
   echo "night-mode on [Para habilitar o modo noturno]"
   echo "night-mode off [Para desabilitar o modo noturno]"
   exit
+}
+
+if [[ -z $MODE ]]; then
+  help
 fi
 
-if [[ $MODE == "on" ]]; then
+case $MODE in
+on)
   gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-fi
-
-if [[ $MODE == "off" ]]; then
+  ;;
+off)
   gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false
-fi
+  ;;
+--help | -h | *)
+  help
+  ;;
+esac
