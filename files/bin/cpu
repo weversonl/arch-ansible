@@ -2,23 +2,31 @@
 
 MODE=$1
 
+function help () {
+  echo "cpu desempenho [Para elevar a perfomance da CPU]"
+  echo "cpu balanceado [Para deixar equilibrado a perfomance da CPU]"
+  exit
+}
+
 if (( $(id -u) != 0 )); then
   echo "Run as sudo";
   exit
 fi
 
 if [[ -z $MODE ]]; then
-  echo "cpu desempenho [Para elevar a perfomance da CPU]"
-  echo "cpu balanceado [Para deixar equilibrado a perfomance da CPU]"
-  exit
+  help
 fi
 
-if [[ $MODE == "desempenho" ]]; then
-  cpupower frequency-set -g performance >/dev/null  
+case $MODE in
+desempenho)
+  cpupower frequency-set -g performance >/dev/null
   echo "modo desempenho ativado"
-fi
-
-if [[ $MODE == "balanceado" ]]; then
-  cpupower frequency-set -g powersave >/dev/null 
+  ;;
+balanceado)
+  cpupower frequency-set -g powersave >/dev/null
   echo "modo balanceado ativado"
-fi
+  ;;
+--help | -h | *)
+  help
+  ;;
+esac
