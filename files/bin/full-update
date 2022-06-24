@@ -2,4 +2,4 @@
 
 yay -Syu
 flatpak update
-snap refresh
+sudo snap refresh

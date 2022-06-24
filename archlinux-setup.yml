@@ -211,6 +211,8 @@
             - redhat.vscode-xml
             - redhat.vscode-yaml
             - vscjava.vscode-java-pack
+            - arjun.swagger-viewer
+            - mtxr.sqltools
 
         - name: Copy my vscodium config file
           copy: 
