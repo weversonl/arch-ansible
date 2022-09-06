@@ -20,10 +20,12 @@ fi
 case $MODE in
 desempenho)
   cpupower frequency-set -g performance >/dev/null
+  nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=1" > /dev/null
   echo "modo desempenho ativado"
   ;;
 balanceado)
   cpupower frequency-set -g powersave >/dev/null
+  nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=0" > /dev/null
   echo "modo balanceado ativado"
   ;;
 --help | -h | *)

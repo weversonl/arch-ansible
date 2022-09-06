@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if (( $(id -u) != 0 )); then
+  echo "Run as sudo";
+  exit
+fi
+
+sync && sysctl vm.drop_caches=3 > /dev/null

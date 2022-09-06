@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+
+function banner() {
+  echo -e " █████ █████ ███████████     ███████    █████ █████
+░░███ ░░███ ░░███░░░░░███  ███░░░░░███ ░░███ ░░███ 
+ ░░███ ███   ░███    ░███ ███     ░░███ ░░███ ███  
+  ░░█████    ░██████████ ░███      ░███  ░░█████   
+   ███░███   ░███░░░░░███░███      ░███   ███░███  
+  ███ ░░███  ░███    ░███░░███     ███   ███ ░░███ 
+ █████ █████ ███████████  ░░░███████░   █████ █████
+░░░░░ ░░░░░ ░░░░░░░░░░░     ░░░░░░░    ░░░░░ ░░░░░ 
+                                                   "
+}
+
+function help() {
+  banner
+  echo -e "xbox [on]                        To activate the Xbox Controller LED\n"
+  echo -e "xbox [off]                       To turn off the Xbox Controller LED\n"
+  echo -e "xbox -b,--brightness [0-20]      To control the brightness of the Xbox Controller LED\n"
+  echo -e "xbox -i,--interactive            To enter interactive mode\n"
+  echo -e "xbox -h,--help                   To display the Help Menu\n"
+  exit
+}
+
+function validate() {
+
+  if (($(id -u) != 0)); then
+    echo "Run as sudo"
+    exit
+  fi
+
+  if [ ! -d /sys/class/leds/gip*/ ]; then
+    echo "Connect your Xbox device before using this controller!"
+    exit
+  fi
+
+  if [[ -z $1 ]]; then
+    help
+  fi
+
+}
+
+function brightness() {
+
+  local value=$1
+
+  if [[ -z $value ]]; then
+    echo "Choose a value between 0 and 20 for the LED brightness"
+  else
+    if [[ $value -gt 20 ]]; then
+      value=20
+    fi
+    echo $value | sudo tee /sys/class/leds/gip*/brightness >/dev/null
+    echo "LED brightness set to $value"
+  fi
+}
+
+function turnOnLED() {
+  echo 1 | sudo tee /sys/class/leds/gip*/mode >/dev/null
+  echo "LED on"
+}
+
+function turnOffLED() {
+  echo 0 | sudo tee /sys/class/leds/gip*/mode >/dev/null
+  echo "LED off"
+}
+
+function interactive() {
+  while :; do
+    clear
+    banner
+    echo -e "1. Control LED"
+    echo -e "2. Control LED brightness"
+    echo -e "3. Exit\n"
+
+    read -p "Your option: " choice
+
+    case $choice in
+    1)
+      clear
+      banner
+      echo "1. To turn on the LED"
+      echo -e "2. To turn off the LED\n"
+      read -p "Your option: " opc
+      case $opc in
+      1) turnOnLED ;;
+      2) turnOffLED ;;
+      *) echo "Invalid option." ;;
+      esac
+      ;;
+    2)
+      clear
+      banner
+      read -p "Enter a value from 0 to 20: " opc
+      brightness $opc
+      ;;
+    3)
+      clear
+      exit
+      ;;
+    *)
+      echo "Invalid option."
+      ;;
+    esac
+  done
+}
+
+function execution() {
+
+  case $1 in
+  on)
+    turnOnLED
+    ;;
+  off)
+    turnOffLED
+    ;;
+  -b | --brightness)
+    brightness $2
+    ;;
+  -i | --interactive)
+    interactive
+    ;;
+  --help | -h | *)
+    help
+    ;;
+  esac
+
+}
+
+function main() {
+
+  validate $1
+
+  execution $1 $2
+
+}
+
+main $1 $2

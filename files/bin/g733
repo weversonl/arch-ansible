@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+
+function banner() {
+  echo -e "   █████████  ██████████  ████████   ████████ 
+  ███░░░░░███░███░░░░███ ███░░░░███ ███░░░░███
+ ███     ░░░ ░░░    ███ ░░░    ░███░░░    ░███
+░███               ███     ██████░    ██████░ 
+░███    █████     ███     ░░░░░░███  ░░░░░░███
+░░███  ░░███     ███     ███   ░███ ███   ░███
+ ░░█████████    ███     ░░████████ ░░████████ 
+  ░░░░░░░░░    ░░░       ░░░░░░░░   ░░░░░░░░  
+                                              "
+}
+
+function help() {
+  banner
+  echo -e "g733 -l,--LED [on/off]           To control the Headset LED\n"
+  echo -e "g733 -b,--battery                To check the Headset battery level\n"
+  echo -e "g733 -s,--sidetone               To activate the Headset sidetone\n"
+  echo -e "g733 -h,--help                   To display the Help Menu\n"
+  exit
+}
+
+function validate() {
+
+  #   if [ ! -d /path/headset/ ]; then
+  #     echo "Connect the Headset to use the program!"
+  #     exit
+  #   fi
+
+  if [[ -z $1 ]]; then
+    help
+  fi
+
+}
+
+function controlLED() {
+
+  local value=$1
+
+  case $value in
+  on | 1)
+    turnOnLED
+    ;;
+  off | 0)
+    turnOffLED
+    ;;
+  *)
+    echo "To control the LED, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off"
+    ;;
+  esac
+
+}
+
+function turnOnLED() {
+  headsetcontrol -l 1 >/dev/null
+  echo "LED ON"
+}
+
+function turnOffLED() {
+  headsetcontrol -l 0 >/dev/null
+  echo "LED OFF"
+}
+
+function checkBattery() {
+  headsetcontrol -b | grep Battery
+}
+
+function sidetone() {
+
+  local value=$1
+
+  case $value in
+  on | 1)
+    turnOnSideTone
+    ;;
+  off | 0)
+    turnOffSideTone
+    ;;
+  *)
+    echo "To control the Sidetone, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off"
+    ;;
+  esac
+}
+
+function turnOnSideTone() {
+  headsetcontrol -s 128 > /dev/null
+  echo "SIDETONE ON"
+}
+
+function turnOffSideTone() {
+  headsetcontrol -s 0 > /dev/null
+  echo "SIDETONE OFF"
+}
+
+function execution() {
+
+  case $1 in
+  -l | --LED)
+    controlLED $2
+    ;;
+  -b | --battery)
+    checkBattery
+    ;;
+  -s | --sidetone)
+    sidetone $2
+    ;;
+  --help | -h | *)
+    help
+    ;;
+  esac
+
+}
+
+function main() {
+
+  validate $1
+
+  execution $1 $2
+
+}
+
+main $1 $2
