@@ -83,8 +83,6 @@
             - go
             - jdk-openjdk
             - maven
-            - mariadb
-            - postgresql
             - docker
             - docker-compose
             - pacman-contrib
@@ -149,6 +147,9 @@
             - man-db
             - tree
             - vagrant
+            - dnsmasq
+            - virt-manager
+            - dnsutils
 
     - block:
         - name: Adding existing user to group Docker
@@ -183,6 +184,7 @@
             - gammy
             - spotify
             - vscodium-bin
+            - diodon
 
     - block:
         - name: Install vscodium extensions
