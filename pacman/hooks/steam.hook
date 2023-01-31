@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = steam
+
+[Action]
+Description = change steam icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/steam-hook.sh

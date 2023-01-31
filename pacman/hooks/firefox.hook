@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = firefox
+
+[Action]
+Description = change firefox icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/firefox-hook.sh

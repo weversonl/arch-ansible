@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = virtualbox
+
+[Action]
+Description = change virtualbox icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/virtualbox-hook.sh

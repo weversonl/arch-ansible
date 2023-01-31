@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+function help() {
+  echo -e "Please enter an INPUT and OUTPUT value"
+  echo -e "Example: convert-image jpeg png"
+  echo -e "--exclude, if you want the original image to be deleted after converted"
+  echo -e "Example: convert-image jpeg png --exclude"
+  exit
+}
+
+function validate() {
+
+  if [[ -z $1 ]]; then
+    help
+  fi
+    if [[ -z $2 ]]; then
+    help
+  fi
+
+}
+
+validate $1 $2
+
+FORMAT_INPUT=$1
+FORMAT_OUTPUT=$2
+
+if [[ ! -z $3 && "$3" == "--exclude" ]]; then
+  for image in *.$FORMAT_INPUT; do 
+    convert $image "${image%.$FORMAT_INPUT}.${FORMAT_OUTPUT}";
+    rm -rf $image
+  done
+  exit
+fi
+
+for image in *.$FORMAT_INPUT; do 
+  convert $image "${image%.$FORMAT_INPUT}.${FORMAT_OUTPUT}";
+done

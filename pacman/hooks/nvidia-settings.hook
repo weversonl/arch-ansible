@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = nvidia-settings
+
+[Action]
+Description = change nvidia-settings icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/nvidia-settings-hook.sh

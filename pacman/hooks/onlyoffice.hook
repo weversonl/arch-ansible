@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = onlyoffice-bin
+
+[Action]
+Description = change onlyoffice name
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/onlyoffice-hook.sh

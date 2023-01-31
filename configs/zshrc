@@ -135,21 +135,9 @@ compinit
 
 # ---------------------------------- ALIAS SYSTEM ---------------------------------------- #
 
-alias exa="exa --group-directories-first --color=always"
-alias ls="exa --group-directories-first --color=always"
-alias la="exa -la --group-directories-first --color=always"
-alias ll="exa -l --group-directories-first --color=always"
-alias lt="exa -aT --group-directories-first --color=always"
-alias detail="exa --group-directories-first --icons --color=always"
-alias cat="bat"
-alias grep="rg"
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
-alias code="codium"
-alias decode-qr="zbarimg"
-alias encode-qr="qrshot"
-alias current-folder-size="du -shx ./* | sort -rh"
+if [ -f ~/.zshrc_alias ]; then
+  . ~/.zshrc_alias
+fi
 
 # ------------------------------------ EXPORTS ------------------------------------------- #
 
@@ -175,7 +163,7 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-# ------------------------------------- VARIABLES  --------------------------------------- #
+# ------------------------------------- EXPORTS ------------------------------------------ #
 
 export HD="/media/hd"
 

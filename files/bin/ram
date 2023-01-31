@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+function help() {
+  echo -e "Please enter an INPUT process"
+  echo -e "Example: ram chrome-stable"
+  exit
+}
+
+function validate() {
+
+  if [[ -z $1 ]]; then
+    help
+  fi
+
+}
+
+validate $1
+
+PROCESS_TO_CHECK=$1
+
+smem -t -k -c pss -P "$PROCESS_TO_CHECK" | tail -n 1

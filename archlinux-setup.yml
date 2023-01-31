@@ -63,6 +63,7 @@
             - nvidia-dkms
             - nvidia-utils
             - lib32-nvidia-utils
+            - amd-ucode
             - git
             - curl
             - wget
@@ -75,7 +76,7 @@
             - p7zip
             - android-tools
             - rclone
-            - youtube-dl
+            - yt-dlp
             - hping
             - nmap
             - whois
@@ -146,10 +147,30 @@
             - mlocate
             - man-db
             - tree
-            - vagrant
             - dnsmasq
             - virt-manager
             - dnsutils
+            - gst-plugins-good
+            - gst-plugin-pipewire
+            - gstreamer-vaapi
+            - libva
+            - libva-mesa-driver
+            - lib32-pipewire
+            - lib32-pipewire-jack
+            - procs
+            - sd
+            - dust
+            - bandwhich
+            - grex
+            - git-delta
+            - ripgrep
+            - bat
+            - exa
+            - fd
+            - ncdu
+            - duf
+            - zbarimg
+            - pavucontrol
 
     - block:
         - name: Adding existing user to group Docker
@@ -174,7 +195,6 @@
           loop:
             - optimus-manager
             - optimus-manager-qt
-            - gnome-text-editor
             - ttf-meslo-nerd-font-powerlevel10k
             - zsh-theme-powerlevel10k-git
             - asdf-vm
@@ -185,38 +205,61 @@
             - spotify
             - vscodium-bin
             - diodon
+            - mangohud-git 
+            - lib32-mangohud-git
+            - heroic-games-launcher-bin
+            - heroku-cli
+            - gpu-screen-recorder-git
+            - gpu-screen-recorder-gtk-git
+            - upscayl-bin
+            - wd719x-firmware
+            - upd72020x-fw
+            - aic94xx-firmware
+            - ulauncher
+            - nbfc-linux
 
     - block:
         - name: Install vscodium extensions
           shell:
             cmd: codium --install-extension '{{ item }}'
           loop:
-            - formulahendry.code-runner
-            - vscjava.vscode-java-debug
-            - ms-azuretools.vscode-docker
+            - Arjun.swagger-viewer
+            - CoenraadS.bracket-pair-colorizer-2
+            - DotJoshJohnson.xml
             - dracula-theme.theme-dracula
-            - markwylde.vscode-filesize
-            - redhat.java
-            - GabrielBB.vscode-lombok
-            - PKief.material-icon-theme
-            - vscjava.vscode-maven
             - esbenp.prettier-vscode
-            - vscjava.vscode-java-dependency
-            - ms-python.python
+            - formulahendry.code-runner
             - foxundermoon.shell-format
-            - Remisa.shellman
-            - vscjava.vscode-spring-boot-dashboard
+            - franneck94.c-cpp-runner
+            - GabrielBB.vscode-lombok
+            - jbenden.c-cpp-flylint
+            - llvm-vs-code-extensions.vscode-clangd
+            - markwylde.vscode-filesize
+            - mitaki28.vscode-clang
+            - ms-azuretools.vscode-docker
+            - ms-python.python
+            - ms-toolsai.jupyter
+            - ms-toolsai.jupyter-keymap
+            - ms-toolsai.jupyter-renderers
+            - mtxr.sqltools
             - Pivotal.vscode-spring-boot
-            - vscjava.vscode-spring-initializr
-            - vscjava.vscode-java-test
+            - PKief.material-icon-theme
             - qux-bbb.text-utils
+            - redhat.java
             - redhat.vscode-xml
             - redhat.vscode-yaml
+            - Remisa.shellman
+            - usernamehw.commands
+            - vadimcn.vscode-lldb
+            - vscjava.vscode-java-debug
+            - vscjava.vscode-java-dependency
             - vscjava.vscode-java-pack
-            - arjun.swagger-viewer
-            - mtxr.sqltools
+            - vscjava.vscode-java-test
+            - vscjava.vscode-maven
+            - vscjava.vscode-spring-boot-dashboard
+            - vscjava.vscode-spring-initializr
 
-        - name: Copy my vscodium config file
+        - name: Copy vscodium config file
           copy: 
             src: files/vscodium-config.json
             dest: /home/{{ ansible_user_id }}/.config/VSCodium/User/settings.json

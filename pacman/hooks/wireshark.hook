@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = wireshark-qt
+
+[Action]
+Description = change wireshark-qt icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/wireshark-hook.sh

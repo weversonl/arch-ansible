@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = spotify
+
+[Action]
+Description = change spotify icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/spotify-hook.sh

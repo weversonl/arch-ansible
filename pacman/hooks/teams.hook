@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = teams-insiders
+
+[Action]
+Description = change teams icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/teams-hook.sh

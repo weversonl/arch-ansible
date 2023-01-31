@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+MODE=$1
+
+function help() {
+    echo "fan-speed -a [Para ajustar automaticamente a velocidade das FANS]"
+    echo "fan-speed 10-100 [Para ajustar a velocidade das FANS entre 10% a 100%]"
+    exit
+}
+
+if (($(id -u) != 0)); then
+    echo "Run as sudo"
+    exit
+fi
+
+if [[ -z $MODE ]]; then
+    help
+fi
+
+case $MODE in
+-a)
+    nbfc stop >/dev/null 2>&1
+    echo "FANS ajustadas para modo automático."
+    ;;
+--help | -h | *)
+
+    if [[ $MODE -gt 100 ]]; then
+        MODE=100
+        echo "A velocidade não pode ser maior que 100%."
+        nbfc set -s $MODE >/dev/null 2>&1
+        echo "FANS ajustadas para $MODE%"
+        exit
+    fi
+
+    if [[ $MODE -lt 10 ]]; then
+        MODE=10
+        echo "A velocidade não pode ser menor que 10%."
+        nbfc set -s $MODE >/dev/null 2>&1
+        echo "FANS ajustadas para $MODE%"
+        exit
+    fi
+
+    if [ "$MODE" -ge 10 ] && [ "$MODE" -le 100 ]; then
+        nbfc set -s $MODE >/dev/null 2>&1
+        echo "FANS ajustadas para $MODE%"
+        exit
+    fi
+
+    help
+    ;;
+esac
