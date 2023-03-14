@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+from colorama import Fore
+from colorama import Style
+from tabulate import tabulate
+import os
+
+def incluirTextoColorido(valor):
+    if valor <= 55:
+        return f"{Fore.GREEN}{valor} °C{Style.RESET_ALL}"
+    elif valor > 55 and valor <= 75:
+        return f"{Fore.YELLOW}{valor} °C{Style.RESET_ALL}"
+    else:
+        return f"{Fore.RED}{valor} °C{Style.RESET_ALL}"
+
+CPU_TEMP=float(os.popen('sensors | grep -A 0 "Tctl" | cut -d " " -f 10 | cut -d "+" -f 2 | sed -e "s/°C//g"').read())
+AMD_GPU_TEMP=float(os.popen('sensors | grep -A 0 "edge" | cut -d " " -f 10 | cut -d "+" -f 2 | sed -e "s/°C//g"').read())
+NVIDIA_GPU_TEMP=float(os.popen('nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader').read())
+
+CPU_TEXT = incluirTextoColorido(CPU_TEMP)
+AMD_GPU_TEXT = incluirTextoColorido(AMD_GPU_TEMP)
+NVIDIA_GPU_TEXT = incluirTextoColorido(NVIDIA_GPU_TEMP)
+
+data = [
+
+    ["CPU", CPU_TEXT],
+    ["AMD GPU", AMD_GPU_TEXT],
+    ["NVIDIA GPU", NVIDIA_GPU_TEXT]
+
+]
+
+print (tabulate(data, headers=["Source", "Temperature"], tablefmt="rounded_grid"))
