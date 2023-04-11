@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+packages=$(yay -Qtdq)
+
+if [[ -z $packages ]]; then
+  echo "Não há pacotes para serem removidos!"
+else
+  yay -Rns $packages
+fi
+
+yes S | yay -Scc

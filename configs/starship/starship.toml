@@ -1,0 +1,196 @@
+format = """
+ $username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$git_commit\
+$localip\
+$fill\
+$nodejs\
+$python\
+$java\
+$docker_context\
+$container\
+$shell\
+$cmd_duration $time\
+$line_break\
+$character"""
+
+[fill]
+symbol = " "
+
+[directory]
+style = "blue bold"
+read_only = " "
+truncation_length = 4
+truncate_to_repo = true
+
+#[directory.substitutions]
+# "Home" = "AA"
+#"Documentos" = " "
+#"Downloads" = " "
+#"Música" = " "
+#"Imagens" = " "
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "bright-black"
+
+#[jobs]
+#symbol = ""
+#style = "bold red"
+#number_threshold = 4
+#symbol_threshold = 0
+#format = "[$symbol]($style)"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+
+[time]
+disabled = false
+style = "white bold"
+time_format = "%H:%M:%S"
+#time_format = "%R"
+format = " [$time]($style)"
+utc_time_offset = '-3'
+
+# [custom.stunnel]
+# when = "ps aux | grep stunnel | grep -v grep"
+# command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+# style = "red"
+# format = "[TUNNEL OPEN for $output]($style)"
+
+[aws]
+symbol = "  "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+format = "via [$symbol$context]($style) "
+style = "blue bold"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
+
+[container]
+format = '[$symbol \[$name\]]($style) '
+
+# [docker_context]
+# format = 'via [🐋 $context](blue bold)'
+# detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+# only_with_files = true
+# disabled = false
+# detect_extensions = []
+# detect_folders = []
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+format = '[${symbol}${version} ]($style)'
+style = "bold yellow"
+detect_extensions = ["java", "jar"]
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+disabled = false
+threshold = -1
+style = 'bold dimmed green'
+format = "[${symbol}${ram_pct}]($style)"
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+format = '[${symbol} ]($style)'
+style = "bold yellow"
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shell]
+zsh_indicator = ''
+unknown_indicator = 'mystery shell'
+style = 'cyan bold'
+disabled = true
+
+[localip]
+ssh_only = true
+format = '@[$localipv4](bold red) '
+disabled = true
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[nodejs]
+format = "[ Node ](bold green) "
+detect_files = ["package.json", ".node-version"]
+detect_folders = ["node_modules"]

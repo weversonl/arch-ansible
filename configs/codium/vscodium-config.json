@@ -1,26 +1,22 @@
 {
   // EDITOR CONFIG
-  "editor.fontFamily": "'Cascadia Mono'",
+  "editor.fontFamily": "Cascadia Mono",
   "editor.fontSize": 22,
   "editor.fontLigatures": true,
   "editor.wordWrap": "on",
   "editor.suggestSelection": "first",
   "editor.bracketPairColorization.enabled": true,
   "editor.unicodeHighlight.nonBasicASCII": false,
-  
   // TERMINAL CONFIG
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.fontWeight": "800",
   "security.workspace.trust.untrustedFiles": "open",
-  
   // LANGUAGE CONFIG
   "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/verso/.vscode-oss/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
-  
   // WORKSPACE CONFIG
   "workbench.colorTheme": "Dracula",
   "workbench.iconTheme": "material-icon-theme",
-  
   // PRETIFFY CONFIG | FORMAT DOCUMENT
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -37,7 +33,6 @@
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  
   // FILES CONFIG
   "files.autoSave": "afterDelay",
   "files.exclude": {
@@ -49,8 +44,23 @@
   "files.associations": {
     "*.java": "java"
   },
-  
   // OTHERS CONFIG
   "explorer.confirmDelete": false,
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  // MACROS
+  "commands.commands": {},
+  "clangd.path": "/home/verso/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/15.0.6/clangd_15.0.6/bin/clangd",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.unicodeHighlight.allowedCharacters": {
+    " ": true
+  },
+  "workbench.editor.untitled.hint": "hidden",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  }
 }

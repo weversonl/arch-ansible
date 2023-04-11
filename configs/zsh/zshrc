@@ -1,9 +1,12 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+
+# P10K COMENTADO
+
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -15,6 +18,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+
 ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
@@ -77,7 +81,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker-compose mvn)
+plugins=(git docker docker-compose mvn asdf command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,13 +112,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# P10K COMENTADO
+
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ------------------------------------- TMUX --------------------------------------------- #
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#  exec tmux
+#fi
 
 alias tmux-clear-sessions="tmux kill-session -a"
 alias tmux-list-sessions="tmux list-sessions"
@@ -122,7 +129,8 @@ alias tmux-kill-session="tmux kill-session"
 
 # ------------------------------------ ZSH CONFIG ---------------------------------------- #
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+eval "$(starship init zsh)"
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
@@ -147,11 +155,14 @@ export EDITOR="lvim"
 export MANPAGER="less"
 export PAGER="less"
 export TERMINAL="alacritty"
-export BROWSER="google-chrome-stable"
+export BROWSER="firefox"
 export OPENER="xdg-open"
 export DIFFPROG="lvim -d $1"
 export WINEPREFIX="${HOME}/.local/share/wineprefixes/WINE32"
 export WINEPREFIX64="${HOME}/.local/share/wineprefixes/WINE64"
+export TERM=xterm-256color
+export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+export BAT_CONFIG_PATH=${HOME}/.config/bat/config
 
 # ------------------------------------- LESS --------------------------------------------- #
 
@@ -191,7 +202,7 @@ extract ()
   fi
 }
 
-# ------------------------------- GOOGLE CLOUD SDK --------------------------------------- #
+# ------------------------------- Google Cloud SDK --------------------------------------- #
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/opt/local/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/local/google-cloud-sdk/path.zsh.inc'; fi
@@ -199,6 +210,3 @@ if [ -f '/opt/local/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/local/google-
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/local/google-cloud-sdk/completion.zsh.inc'; fi
 
-# ------------------------------------ HEROKU -------------------------------------------- #
-
-HEROKU_AC_ZSH_SETUP_PATH=/home/verso/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
