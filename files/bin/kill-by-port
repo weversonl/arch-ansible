@@ -1,0 +1,22 @@
+#!/bin/bash
+# Script to kill a port passed as parameter
+
+function help () {
+  echo "Usage: kill-by-port 8080 [To kill a process by port]"
+  exit
+}
+
+if [ $# -eq 0 ]; then
+  help
+  exit 1
+fi
+
+port=$1
+pid=$(lsof -t -i:$port)
+
+if [ -z "$pid" ]; then
+  echo "Port $port is not in use"
+else
+  echo "Killing process with PID $pid"
+  kill -9 $pid
+fi

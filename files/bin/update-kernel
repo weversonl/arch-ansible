@@ -5,4 +5,4 @@ if (( $(id -u) != 0 )); then
   exit
 fi
 
-sync && sysctl vm.drop_caches=3 > /dev/null
+mkinitcpio -p linux

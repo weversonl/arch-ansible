@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+VERDE="\033[32m"
+AZUL="\033[34m" 
+VERMELHO="\033[31m" 
+AMARELO="\e[33m"
+
+AMD="${VERMELHO}⚪️"
+NVIDIA="${VERDE}⚪️"
+HYBRID="${AZUL}⚪️"
+
+function help() {
+  echo -e "gpu-selector amd [To run amd gpu]"
+  echo -e "gpu-selector nvidia [To run nvidia gpu]"
+  echo -e "gpu-selector hybrid [To run hybrid gpu]"
+  echo -e "gpu-selector status [To show selected gpu]"
+  exit
+}
+
+function validate() {
+
+  if (($(id -u) != 0)); then
+    echo -e "${VERMELHO}Run as sudo!"
+    exit
+  fi
+
+}
+
+case $1 in
+amd | a | A)
+    validate
+    envycontrol -s integrated > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "${VERMELHO}Unable to select GPU amd. Run ${AMARELO}'envycontrol -s integrated'${VERMELHO} and see the output for correction"
+    else
+        echo -e "${AMARELO}AMD GPU selected${AMD}"
+    fi
+    ;;
+nvidia | n | N)
+    validate
+    envycontrol -s nvidia --force-comp --coolbits 24 --dm gdm > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "${VERMELHO}Unable to select GPU nvidia. Run ${AMARELO}'envycontrol -s nvidia --force-comp --coolbits 24 --dm gdm'${VERMELHO} and see the output for correction"
+    else
+        echo -e "${AMARELO}NVIDIA GPU selected${NVIDIA}"
+    fi
+    ;;
+hybrid | h | H)
+    validate
+    envycontrol -s hybrid > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "${VERMELHO}Unable to select GPU hybrid. Run ${AMARELO}'envycontrol -s hybrid'${VERMELHO} and see the output for correction"
+    else
+        echo -e "${AMARELO}HYBRID GPU's selected${HYBRID}"
+    fi
+    ;;
+status | s | S)
+    USED=$(envycontrol --query)
+    if [ $? -ne 0 ]; then
+        echo -e "${VERMELHO}Unable to find used GPU. Run ${AMARELO}'envycontrol --query'${VERMELHO} and see the output for correction"
+    else
+        if [[ "$USED" = "hybrid" ]]; then
+            echo -e "${AMARELO}SELECTED GPU: ${AZUL}HYBRID${HYBRID}"
+        elif [[ "$USED" = "integrated" ]]; then
+            echo -e "${AMARELO}SELECTED GPU: ${VERMELHO}AMD${AMD}"
+        elif [[ "$USED" = "nvidia" ]]; then
+            echo -e "${AMARELO}SELECTED GPU: ${VERDE}NVIDIA${NVIDIA}"
+        fi
+    fi
+    ;;
+--help | -h | *)
+    help
+    ;;
+esac

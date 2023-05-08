@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "on" ]]; then
+  polychromatic-cli -s "PM2225U07708794" -o brightness -p 100
+elif [[ $1 == "off" ]]; then
+  polychromatic-cli -s "PM2225U07708794" -o brightness -p 0
+fi

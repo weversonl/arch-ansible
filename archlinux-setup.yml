@@ -171,6 +171,8 @@
             - duf
             - zbarimg
             - pavucontrol
+            - starship
+            - devtools
 
     - block:
         - name: Adding existing user to group Docker
@@ -183,7 +185,7 @@
     - block:
         - name: Add GPG Key Spotify
           shell:
-            cmd: curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+            cmd: curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --import -
 
         - name: Install YAY [AUR Helper]
           become: true
@@ -193,30 +195,26 @@
           become: true
           aur: name={{ item }} user={{ ansible_user_id }} skip_pgp=yes
           loop:
-            - optimus-manager
-            - optimus-manager-qt
+            - envycontrol
+            - openrazer-meta
             - ttf-meslo-nerd-font-powerlevel10k
-            - zsh-theme-powerlevel10k-git
             - asdf-vm
             - google-chrome
             - teams
             - onlyoffice-bin
-            - gammy
+            - gummy
             - spotify
             - vscodium-bin
             - diodon
             - mangohud-git 
             - lib32-mangohud-git
-            - heroic-games-launcher-bin
-            - heroku-cli
-            - gpu-screen-recorder-git
-            - gpu-screen-recorder-gtk-git
             - upscayl-bin
             - wd719x-firmware
             - upd72020x-fw
             - aic94xx-firmware
             - ulauncher
             - nbfc-linux
+            - polychromatic
 
     - block:
         - name: Install vscodium extensions
@@ -224,7 +222,10 @@
             cmd: codium --install-extension '{{ item }}'
           loop:
             - Arjun.swagger-viewer
+            - bungcip.better-toml
             - CoenraadS.bracket-pair-colorizer-2
+            - DanielSanMedium.dscodegpt
+            - dbaeumer.vscode-eslint
             - DotJoshJohnson.xml
             - dracula-theme.theme-dracula
             - esbenp.prettier-vscode
@@ -234,13 +235,12 @@
             - GabrielBB.vscode-lombok
             - jbenden.c-cpp-flylint
             - llvm-vs-code-extensions.vscode-clangd
+            - magicstack.MagicPython
             - markwylde.vscode-filesize
             - mitaki28.vscode-clang
             - ms-azuretools.vscode-docker
+            - ms-python.black-formatter
             - ms-python.python
-            - ms-toolsai.jupyter
-            - ms-toolsai.jupyter-keymap
-            - ms-toolsai.jupyter-renderers
             - mtxr.sqltools
             - Pivotal.vscode-spring-boot
             - PKief.material-icon-theme
@@ -249,6 +249,8 @@
             - redhat.vscode-xml
             - redhat.vscode-yaml
             - Remisa.shellman
+            - ritwickdey.LiveServer
+            - robole.javascript-snippets
             - usernamehw.commands
             - vadimcn.vscode-lldb
             - vscjava.vscode-java-debug
@@ -258,14 +260,15 @@
             - vscjava.vscode-maven
             - vscjava.vscode-spring-boot-dashboard
             - vscjava.vscode-spring-initializr
+            - zaaack.markdown-editor
 
         - name: Copy vscodium config file
           copy: 
-            src: files/vscodium-config.json
+            src: configs/codium/vscodium-config.json
             dest: /home/{{ ansible_user_id }}/.config/VSCodium/User/settings.json
             owner: "{{ ansible_user_id }}"
             group: "{{ ansible_user_id }}"
-            mode: 0644
+            mode: u=rw,g=r,o=r
 
     - block:
         - name: Verify if Oh-My-zsh is installed
@@ -285,10 +288,10 @@
             name: "{{ ansible_user_id }}"
             shell: /bin/zsh
 
-        - name: Include powerlevel10k and completions to zshrc
+        - name: Include starship and zsh completions to zshrc
           lineinfile:
             path: /home/{{ ansible_user_id }}/.zshrc
-            line: "source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme\nsource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\nautoload -Uz compinit\ncompinit"
+            line: "eval \"$(starship init zsh)\"\nsource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\nautoload -Uz compinit\ncompinit"
             state: present
 
         - name: Include asdf configurations zshrc
@@ -297,11 +300,11 @@
             line: "# ------------------------------------ ASDF ---------------------------------------------- #\n. /opt/asdf-vm/asdf.sh"
             state: present
 
-        - name: Add git, docker-compose and maven plugins to zshrc
+        - name: Add plugins to zshrc
           lineinfile:
             path: /home/{{ ansible_user_id }}/.zshrc
             regexp: "^plugins="
-            line: "plugins=(git docker-compose mvn)"
+            line: "plugins=(git docker docker-compose mvn asdf command-not-found)"
 
     - block:
         - name: Copy my personal binaries to local/bin
@@ -311,3 +314,61 @@
             owner: "{{ ansible_user_id }}"
             group: "{{ ansible_user_id }}"
             mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my bat config
+          copy: 
+            src: configs/bat
+            dest: /home/{{ ansible_user_id }}/.config/
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my neofetch config
+          copy: 
+            src: configs/neofetch
+            dest: /home/{{ ansible_user_id }}/.config/
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my ripgrep config
+          copy: 
+            src: configs/ripgrep/ripgreprc
+            dest: /home/{{ ansible_user_id }}/.ripgreprc
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my tealdeer config
+          copy: 
+            src: configs/tealdeer
+            dest: /home/{{ ansible_user_id }}/.config/
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my aliases file
+          copy: 
+            src: configs/zsh/zshrc_alias
+            dest: /home/{{ ansible_user_id }}/.zshrc_alias
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_id }}"
+            mode: u=rwx,g=rx,o=rx
+
+        - name: Copy my hooks
+          become: true
+          copy: 
+            src: pacman/hooks/
+            dest: /usr/share/libalpm/hooks/
+            owner: "root"
+            group: "root"
+            mode: u=rw,g=r,o=r
+
+        - name: Copy my hooks scripts
+          become: true
+          copy: 
+            src: pacman/scripts
+            dest: /usr/share/libalpm/hooks/
+            owner: "root"
+            group: "root"
+            mode: u=rwx,g=r,o=r

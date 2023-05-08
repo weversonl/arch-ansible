@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+polychromatic-cli -s "PM2225U07708794" -o brightness -p 0
+shutdown now

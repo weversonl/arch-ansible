@@ -1,0 +1,14 @@
+---
+- name: archlinux setup
+  hosts: localhost
+  connection: local
+  tasks:
+    - block:
+        - name: Copy my hooks
+          become: true
+          copy: 
+            src: pacman/hooks/
+            dest: /home/{{ ansible_user_id }}/Downloads/testeeee/
+            owner: "root"
+            group: "root"
+            mode: u=rw,g=r,o=r

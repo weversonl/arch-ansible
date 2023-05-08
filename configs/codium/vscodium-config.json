@@ -33,7 +33,19 @@
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  // FILES CONFIG
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // FILES CONFIGj
   "files.autoSave": "afterDelay",
   "files.exclude": {
     "**/.classpath": true,
@@ -49,18 +61,8 @@
   "redhat.telemetry.enabled": false,
   // MACROS
   "commands.commands": {},
-  "clangd.path": "/home/verso/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/15.0.6/clangd_15.0.6/bin/clangd",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.unicodeHighlight.allowedCharacters": {
     " ": true
   },
-  "workbench.editor.untitled.hint": "hidden",
-  "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  }
+  "workbench.editor.untitled.hint": "hidden"
 }

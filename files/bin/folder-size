@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+ARG=$1
+
+if [[ -z $ARG ]]; then
+  ARG="."
+fi
+
+du -shx "$ARG"/* | sort -rh
