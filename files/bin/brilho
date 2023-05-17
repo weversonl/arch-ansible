@@ -1,0 +1,27 @@
+#!/bin/bash
+
+VERDE="\033[32m"
+CYAN='\033[00;36m'
+AMARELO="\e[33m"
+
+LEVEL=$1
+
+function help() {
+  echo -e "${CYAN}brilho ${VERDE}[To get actual brightness]"
+  echo -e "${CYAN}brilho ${AMARELO}<value> ${VERDE}[To set brightness]"
+  exit
+}
+
+if [[ -z $LEVEL ]]; then
+    ACTUAL_BG=$(ddcutil getvcp 10 | awk -F '[=,[:space:]]+' '{print $8}')
+    echo -e "${CYAN}[info]: Screen Brightness level: ${VERDE}${ACTUAL_BG}%"
+    exit
+fi
+
+if [ $LEVEL -gt 100 ] || [ $LEVEL -lt 0 ]; then
+    help
+else
+    ddcutil setvcp 10 $LEVEL
+    echo -e "${CYAN}[info]: Screen Brightness level: ${VERDE}${LEVEL}%"
+    exit
+fi
