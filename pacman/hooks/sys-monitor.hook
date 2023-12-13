@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = system-monitoring-center
+
+[Action]
+Description = change system monitor icon
+When = PostTransaction
+Exec = /usr/share/libalpm/hooks/scripts/sysmonitor-hook.sh

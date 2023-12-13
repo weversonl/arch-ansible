@@ -1,0 +1,11 @@
+firefox-hook.sh
+nvidia-settings-hook.sh
+onlyoffice-hook.sh
+scripts.txt
+spotify-hook.sh
+steam-hook.sh
+teams-hook.sh
+telegram-hook.sh
+virtualbox-hook.sh
+vscode-hook.sh
+wireshark-hook.sh

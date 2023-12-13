@@ -2,9 +2,9 @@
 Operation = Install
 Operation = Upgrade
 Type = Package
-Target = vscodium-bin
+Target = visual-studio-code-bin
 
 [Action]
-Description = change vscodium icon
+Description = change vscode icon
 When = PostTransaction
 Exec = /usr/share/libalpm/hooks/scripts/vscode-hook.sh

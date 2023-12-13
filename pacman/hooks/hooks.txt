@@ -1,0 +1,11 @@
+codium.hook
+firefox.hook
+hooks.txt
+nvidia-settings.hook
+onlyoffice.hook
+spotify.hook
+steam.hook
+teams.hook
+telegram.hook
+virtualbox.hook
+wireshark.hook
