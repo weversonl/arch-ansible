@@ -102,7 +102,6 @@
             - qbittorrent
             - sqlitebrowser
             - firefox
-            - lutris
             - scrcpy
             - peek
             - telegram-desktop
@@ -195,18 +194,19 @@
           become: true
           aur: name={{ item }} user={{ ansible_user_id }} skip_pgp=yes
           loop:
-            - envycontrol
-            - openrazer-meta
-            - ttf-meslo-nerd-font-powerlevel10k
+            - optimus-manager
+            - gufw
+            - openrazer-driver-dkms
+            - ttf-meslo-nerd
             - asdf-vm
             - google-chrome
             - teams
             - onlyoffice-bin
             - gummy
             - spotify
-            - vscodium-bin
+            - visual-studio-code-bin
             - diodon
-            - mangohud-git 
+            - mangohud-git
             - lib32-mangohud-git
             - upscayl-bin
             - wd719x-firmware
@@ -215,60 +215,9 @@
             - ulauncher
             - nbfc-linux
             - polychromatic
-
-    - block:
-        - name: Install vscodium extensions
-          shell:
-            cmd: codium --install-extension '{{ item }}'
-          loop:
-            - Arjun.swagger-viewer
-            - bungcip.better-toml
-            - CoenraadS.bracket-pair-colorizer-2
-            - DanielSanMedium.dscodegpt
-            - dbaeumer.vscode-eslint
-            - DotJoshJohnson.xml
-            - dracula-theme.theme-dracula
-            - esbenp.prettier-vscode
-            - formulahendry.code-runner
-            - foxundermoon.shell-format
-            - franneck94.c-cpp-runner
-            - GabrielBB.vscode-lombok
-            - jbenden.c-cpp-flylint
-            - llvm-vs-code-extensions.vscode-clangd
-            - magicstack.MagicPython
-            - markwylde.vscode-filesize
-            - mitaki28.vscode-clang
-            - ms-azuretools.vscode-docker
-            - ms-python.black-formatter
-            - ms-python.python
-            - mtxr.sqltools
-            - Pivotal.vscode-spring-boot
-            - PKief.material-icon-theme
-            - qux-bbb.text-utils
-            - redhat.java
-            - redhat.vscode-xml
-            - redhat.vscode-yaml
-            - Remisa.shellman
-            - ritwickdey.LiveServer
-            - robole.javascript-snippets
-            - usernamehw.commands
-            - vadimcn.vscode-lldb
-            - vscjava.vscode-java-debug
-            - vscjava.vscode-java-dependency
-            - vscjava.vscode-java-pack
-            - vscjava.vscode-java-test
-            - vscjava.vscode-maven
-            - vscjava.vscode-spring-boot-dashboard
-            - vscjava.vscode-spring-initializr
-            - zaaack.markdown-editor
-
-        - name: Copy vscodium config file
-          copy: 
-            src: configs/codium/vscodium-config.json
-            dest: /home/{{ ansible_user_id }}/.config/VSCodium/User/settings.json
-            owner: "{{ ansible_user_id }}"
-            group: "{{ ansible_user_id }}"
-            mode: u=rw,g=r,o=r
+            - localsend-bin
+            - insomnia-bin
+            - heroic-games-launcher-bin
 
     - block:
         - name: Verify if Oh-My-zsh is installed
