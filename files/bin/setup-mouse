@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+while true; do
+
+  polychromatic-cli -n "Razer Viper Ultimate (Wireless)" -k > /dev/null
+
+  if [ $? -eq 0 ]; then
+    polychromatic-cli -n "Razer Viper Ultimate (Wireless)" -z main -o poll_rate -p 1000
+    polychromatic-cli -n "Razer Viper Ultimate (Wireless)" -z main -o idle_time -p 5
+    polychromatic-cli -n "Razer Viper Ultimate (Wireless)" -z main -o low_battery_threshold -p 5
+    polychromatic-cli --dpi 1000
+    break
+  else
+    sleep 3
+  fi
+
+done
+
+exit 0  

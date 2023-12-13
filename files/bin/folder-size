@@ -7,3 +7,4 @@ if [[ -z $ARG ]]; then
 fi
 
 du -shx "$ARG"/* | sort -rh
+

@@ -1,6 +1,6 @@
 import: 
   - ~/.themes/alacritty-dracula/dracula.yml
-  #- ~/.themes/alacritty-theme/themes/omni.yaml
+  #- ~/.themes/alacritty-omni/omni.yml
   
 #######################################
 ##              ENVS                 ##
@@ -31,7 +31,7 @@ window:
     general: Alacritty
 
   # opacidade da janela
-  opacity: 1.0
+  opacity: 1
 
   dynamic_title: true
   dynamic_padding: false

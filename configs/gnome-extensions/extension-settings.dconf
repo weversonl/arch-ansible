@@ -137,6 +137,7 @@ dash-clock-y-align=0
 dash-hide-activities=true
 dash-layout-json='{"children":[{"vertical":false,"x_align":"FILL","x_expand":true,"children":["clock","settings","system"]},{"vertical":false,"children":[{"vertical":true,"children":["media","links"]},"apps"]},{"vertical":false,"children":["user","levels"]}],"vertical":true}'
 dash-levels-background=true
+dash-levels-show-storage=false
 dash-levels-vertical=false
 dash-levels-x-align=0
 dash-levels-x-expand=true
@@ -179,12 +180,12 @@ date-menu-tweaks=true
 dynamic-panel=false
 dynamic-panel-floating-style=false
 dynamic-panel-useless-gaps=64
-media-player=true
+media-player=false
 media-player-colored-player-icon=true
 media-player-controls-position=2
 media-player-enable-controls=false
 media-player-enable-track=true
-media-player-max-width=10
+media-player-max-width=1
 media-player-offset=0
 media-player-position=2
 media-player-show-loop-shuffle=true
@@ -193,7 +194,7 @@ media-player-show-text=true
 media-player-style=0
 notification-indicator=false
 power-menu=false
-quick-settings-adjust-roundness=true
+quick-settings-adjust-roundness=false
 quick-settings-menu-width=350
 quick-settings-show-airplane=false
 quick-settings-show-app-volume-mixer=false
@@ -209,6 +210,15 @@ quick-settings-show-wifi=false
 quick-settings-show-wired=false
 quick-settings-style=0
 quick-settings-tweaks=true
+stylish-osd=false
+stylish-osd-height=48
+stylish-osd-icon-size=36
+stylish-osd-margin-x=40
+stylish-osd-padding=1
+stylish-osd-position=7
+stylish-osd-roundness=14
+stylish-osd-vertical=false
+stylish-osd-width=350
 window-headerbar=false
 workspace-indicator=true
 workspace-indicator-show-names=false
@@ -245,14 +255,14 @@ dialog-opacity=0.02
 sigma=0
 
 [blur-my-shell/applications]
-blur=true
+blur=false
 blur-on-overview=false
 brightness=1.0
 customize=true
 enable-all=false
-opacity=180
+opacity=215
 sigma=50
-whitelist=['Alacritty', 'cartridges']
+whitelist=['cartridges']
 
 [blur-my-shell/dash-to-dock]
 blur=false
@@ -286,6 +296,7 @@ unblur-in-overview=true
 blur=true
 
 [burn-my-windows]
+active-profile='/home/verso/.config/burn-my-windows/profiles/1677759210974425.conf'
 apparition-animation-time=272
 apparition-open-effect=false
 broken-glass-close-effect=false
@@ -312,10 +323,13 @@ incinerate-open-effect=false
 incinerate-scale=1.6000000000000001
 incinerate-turbulence=0.69999999999999996
 last-extension-version=27
+last-prefs-version=39
 matrix-animation-time=719
 matrix-close-effect=false
 matrix-open-effect=false
 open-preview-effect=''
+prefs-open-count=7
+preview-effect=''
 snap-open-effect=false
 trex-animation-time=500
 trex-open-effect=false
@@ -347,6 +361,15 @@ speedup-factor-divider=20.0
 spring-k=10.0
 x-tiles=5.0
 y-tiles=5.0
+
+[coverflowalttab]
+switcher-style='Timeline'
+
+[custom-accent-colors]
+accent-color='default'
+theme-flatpak=false
+theme-gtk3=false
+theme-shell=false
 
 [dash-to-dock]
 animate-show-apps=true
@@ -403,6 +426,13 @@ show-windows-preview=true
 transparency-mode='FIXED'
 unity-backlit-items=false
 
+[docker]
+logo='white'
+menu-type='icons'
+show-information=true
+show-ports=true
+show-value='containers'
+
 [expandable-notifications]
 expand-mode='ARROW'
 
@@ -414,7 +444,7 @@ tiling-mode-enabled=false
 overview-firefox-pip=true
 
 [gsconnect]
-devices=['f94c2fa019198bdb']
+devices=@as []
 enabled=true
 id='502761ad-a7f6-4a89-9cb2-4d1fbc53468f'
 name='arch'
@@ -439,13 +469,12 @@ applications='{"Compartilhamento da área de trabalho":{"iconName":"preferences-
 receive-directory='/home/verso/Downloads'
 
 [gsconnect/device/f94c2fa019198bdb]
-certificate-pem='-----BEGIN CERTIFICATE-----\nMIIC9zCCAd+gAwIBAgIBATANBgkqhkiG9w0BAQsFADA/MRkwFwYDVQQDDBBmOTRj\nMmZhMDE5MTk4YmRiMRQwEgYDVQQLDAtLREUgQ29ubmVjdDEMMAoGA1UECgwDS0RF\nMB4XDTIxMDcyMDAzMDAwMFoXDTMxMDcyMDAzMDAwMFowPzEZMBcGA1UEAwwQZjk0\nYzJmYTAxOTE5OGJkYjEUMBIGA1UECwwLS0RFIENvbm5lY3QxDDAKBgNVBAoMA0tE\nRTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMD8m2DQX1C1fUT1/9Yc\nkCfc+bx7AXISeG8VHUzts0llZLrnV30go55X8aHEVeeeNwQrhBrezammYwGFi0Qw\nMiLBISMPsdmvft/xzhbtT6j2yG+DEAqBxQ4KQTZq1bWBBESE1YKYU3WQ+3p6h+bU\nqMPE58a3shzge2UI/5s4diJFG3CauVas2BTnDSYZUpdXtw/o7HtlYd8zHnjzMXpF\nzU29rl1Z/5zqojczL/npKWH5L8quS5LliZnz6vGVUjZF17ysYIq/A/V7pOwZRzeH\nzmsUfR5dhQmrmdOPM8FYBhdvZOv6vy0KdD/CCEChlu6p7vqvTGye5R7zMl10A2NE\nMakCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAj0HdxUqflQCpX6Fbu00qbZkEoE+w\nE10Eb4l10iiH2PVDxpJRbjYDVYt02pfMAmQnHSQeO3IaMJN35kTMaIIu2zH0FIKF\np85tE8CbyVm4cGQcDrf6a/Kvfe5rThUcre70UJfiLs9+cmlsGgz+TgLG9o0hEw4O\nL1ysgD/5uPUhYNlFX/5oF31+1wNn+rN3rDGCaHmttYGX+DC4VhT1G40cwHpCdZzE\nQlyOV0RTvwHW8t2nQKzhkV8KLWFXLBQKa+E6fE7a9I4YlxXxk7hnP7vsq65rVgWj\nkDFDRd05i/mdtrA6mPYAGrv84fbM547X4WD2A7qwE9C3nsD1gTEt4VLzZQ==\n-----END CERTIFICATE-----\n'
 disabled-plugins=['notification']
 incoming-capabilities=['kdeconnect.battery', 'kdeconnect.battery.request', 'kdeconnect.bigscreen.stt', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.connectivity_report.request', 'kdeconnect.contacts.request_all_uids_timestamps', 'kdeconnect.contacts.request_vcards_by_uid', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.action', 'kdeconnect.notification.reply', 'kdeconnect.notification.request', 'kdeconnect.photo.request', 'kdeconnect.ping', 'kdeconnect.runcommand', 'kdeconnect.sftp.request', 'kdeconnect.share.request', 'kdeconnect.share.request.update', 'kdeconnect.sms.request', 'kdeconnect.sms.request_attachment', 'kdeconnect.sms.request_conversation', 'kdeconnect.sms.request_conversations', 'kdeconnect.systemvolume', 'kdeconnect.telephony.request', 'kdeconnect.telephony.request_mute']
 last-connection='lan://192.168.15.101:1717'
 name='Redmi Note 8'
 outgoing-capabilities=['kdeconnect.battery', 'kdeconnect.battery.request', 'kdeconnect.bigscreen.stt', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.connectivity_report', 'kdeconnect.contacts.response_uids_timestamps', 'kdeconnect.contacts.response_vcards', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.echo', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.request', 'kdeconnect.photo', 'kdeconnect.ping', 'kdeconnect.presenter', 'kdeconnect.runcommand.request', 'kdeconnect.sftp', 'kdeconnect.share.request', 'kdeconnect.sms.attachment_file', 'kdeconnect.sms.messages', 'kdeconnect.systemvolume.request', 'kdeconnect.telephony']
-paired=true
+paired=false
 supported-plugins=['battery', 'clipboard', 'connectivity_report', 'contacts', 'findmyphone', 'mousepad', 'mpris', 'notification', 'photo', 'ping', 'presenter', 'runcommand', 'sftp', 'share', 'sms', 'systemvolume', 'telephony']
 type='phone'
 
@@ -458,7 +487,7 @@ receive-content=true
 send-content=true
 
 [gsconnect/device/f94c2fa019198bdb/plugin/notification]
-applications='{"Compartilhamento da área de trabalho":{"iconName":"preferences-desktop-remote-desktop","enabled":true},"Impressoras":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Planner":{"iconName":"com.github.alainm23.planner","enabled":true},"Snapd User Session Agent":{"iconName":"application-x-executable","enabled":true},"EasyEffects":{"iconName":"com.github.wwmm.easyeffects","enabled":true},"Programas":{"iconName":"org.gnome.Software","enabled":true},"Data & hora":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Timeshift":{"iconName":"timeshift","enabled":true},"Rede":{"iconName":"nm-device-wireless","enabled":true},"Energia":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Analisador de uso de disco":{"iconName":"org.gnome.baobab","enabled":true},"Rhythmbox":{"iconName":"org.gnome.Rhythmbox3","enabled":true},"Lutris":{"iconName":"lutris","enabled":true},"Cor":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Telegram Desktop":{"iconName":"telegram","enabled":true},"Arquivos":{"iconName":"org.gnome.Nautilus","enabled":true},"Relógios":{"iconName":"org.gnome.clocks","enabled":true},"Gerenciador de compactação":{"iconName":"org.gnome.ArchiveManager","enabled":true},"Microsoft Teams - Insiders":{"iconName":"","enabled":true}}'
+applications='{"Compartilhamento da área de trabalho":{"iconName":"preferences-desktop-remote-desktop","enabled":true},"Impressoras":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Planner":{"iconName":"com.github.alainm23.planner","enabled":true},"Snapd User Session Agent":{"iconName":"application-x-executable","enabled":true},"EasyEffects":{"iconName":"com.github.wwmm.easyeffects","enabled":true},"Programas":{"iconName":"org.gnome.Software","enabled":true},"Data & hora":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Timeshift":{"iconName":"timeshift","enabled":true},"Rede":{"iconName":"nm-device-wireless","enabled":true},"Energia":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Analisador de uso de disco":{"iconName":"org.gnome.baobab","enabled":true},"Rhythmbox":{"iconName":"org.gnome.Rhythmbox3","enabled":true},"Lutris":{"iconName":"lutris","enabled":true},"Cor":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Telegram Desktop":{"iconName":"telegram","enabled":true},"Arquivos":{"iconName":"org.gnome.Nautilus","enabled":true},"Relógios":{"iconName":"org.gnome.clocks","enabled":true},"Gerenciador de compactação":{"iconName":"org.gnome.ArchiveManager","enabled":true},"Microsoft Teams - Insiders":{"iconName":"","enabled":true},"Discos":{"iconName":"org.gnome.DiskUtility","enabled":true},"WhatsApp":{"iconName":"/home/verso/.icons/ico/whatsapp.png","enabled":true},"Easy Effects":{"iconName":"com.github.wwmm.easyeffects","enabled":true},"ChatGPT":{"iconName":"/home/verso/.icons/ico/chatgpt.png","enabled":true},"Devil May Cry HD Collection":{"iconName":"/home/verso/.icons/ico/dmc3.png","enabled":true},"Notificação de alarme do Evolution":{"iconName":"appointment-soon","enabled":true},"League of Legends":{"iconName":"lutris_league-of-legends","enabled":true},"Solaar":{"iconName":"solaar","enabled":true},"Brawlhalla":{"iconName":"/home/verso/.icons/ico/brawl.png","enabled":true}}'
 send-notifications=false
 
 [gsconnect/device/f94c2fa019198bdb/plugin/runcommand]
@@ -469,7 +498,7 @@ receive-directory='/home/verso/Downloads'
 
 [gsconnect/preferences]
 window-maximized=false
-window-size=(738, 440)
+window-size=(770, 440)
 
 [gtile]
 animation=true
@@ -485,8 +514,10 @@ hide-window-titlebars='always'
 restrict-to-primary-screen=false
 
 [hidetopbar]
+animation-time-autohide=0.20000000000000004
+animation-time-overview=0.40000000000000002
 enable-active-window=true
-enable-intellihide=false
+enable-intellihide=true
 hot-corner=false
 keep-round-corners=false
 mouse-sensitive=true
@@ -506,7 +537,7 @@ aggregate-menu=true
 alt-tab-icon-size=0
 alt-tab-small-icon-size=0
 alt-tab-window-preview-size=128
-animation=4
+animation=1
 app-menu=true
 app-menu-icon=true
 background-menu=true
@@ -601,8 +632,9 @@ settingsandsmiconfig=['inactive', 'inactive', 'inactive', 'inactive', 'inactive'
 smiconfig=['inactive', 'inactive', 'inactive', 'inactive', 'inactive']
 
 [openweather]
+actual-city=1
 center-forecast=true
-city='-23.4988614,-47.4969744>Sorocaba>0'
+city='-23.4994884,-47.4951225>Sorocaba>0 && -23.355229549999997,-47.86174912666327>Tatuí>0'
 days-forecast=0
 decimal-places=0
 expand-forecast=false
@@ -646,17 +678,23 @@ move-icon-right=true
 avatar-position=1
 
 [quick-settings-button-remover]
-button-labels='{"NMWirelessToggle":"bash-5g","BluetoothToggleMenu":"Bluetooth","PowerProfilesToggle":"Balanceado","NightLightToggle":"Luz noturna","DarkModeToggle":"Modo escuro","RfkillToggle":"Modo avião","RotationToggle":"Rotação automática","NMVpnToggle":"Proton VPN US-FREE#361029"}'
-default-invisible-buttons=['InputStreamSlider', 'NMWiredToggle', 'NMModemToggle', 'NMBluetoothToggle', 'RotationToggle']
+button-labels='{"BluetoothToggleMenu":"Bluetooth","NightLightToggle":"Luz noturna","DarkModeToggle":"Modo escuro","RfkillToggle":"Modo avião","RotationToggle":"Rotação automática"}'
+default-invisible-buttons=['OutputStreamSlider', 'InputStreamSlider', 'BrightnessItem', 'NMWiredToggle', 'NMWirelessToggle', 'NMModemToggle', 'NMBluetoothToggle', 'BluetoothToggleMenu', 'PowerProfilesToggle', 'RfkillToggle', 'RotationToggle']
 list-buttons=['SystemItem', 'OutputStreamSlider', 'InputStreamSlider', 'BrightnessItem', 'NightLightSlider', 'NMWiredToggle', 'NMWirelessToggle', 'NMModemToggle', 'NMBluetoothToggle', 'BluetoothToggleMenu', 'PowerProfilesToggle', 'NightLightToggle', 'DarkModeToggle', 'RfkillToggle', 'RotationToggle', 'Clutter_Actor', 'NMVpnToggle']
 user-removed-buttons=['PowerProfilesToggle', 'DarkModeToggle']
 
 [quick-settings-tweaks]
 add-dnd-quick-toggle-enabled=false
-list-buttons='[{"name":"Clutter_Actor","label":null,"visible":true},{"name":"SystemItem","label":null,"visible":true},{"name":"OutputStreamSlider","label":null,"visible":false},{"name":"InputStreamSlider","label":null,"visible":false},{"name":"BrightnessItem","label":null,"visible":false},{"name":"NMWiredToggle","label":null,"visible":true},{"name":"NMWirelessToggle","label":null,"visible":true},{"name":"NMModemToggle","label":null,"visible":true},{"name":"NMBluetoothToggle","label":null,"visible":true},{"name":"NMVpnToggle","label":null,"visible":true},{"name":"BluetoothToggleMenu","label":"Bluetooth","visible":false},{"name":"PowerProfilesToggle","label":null,"visible":false},{"name":"NightLightToggle","label":"Luz noturna","visible":true},{"name":"DarkModeToggle","label":"Modo escuro","visible":true},{"name":"RfkillToggle","label":"Modo avião","visible":false},{"name":"RotationToggle","label":"Rotação automática","visible":false},{"name":"MediaSection","label":null,"visible":false},{"name":"Notifications","label":null,"visible":false}]'
-media-control-compact-mode=true
+disable-adjust-content-border-radius=false
+disable-remove-shadow=false
+input-always-show=false
+list-buttons='[{"name":"SystemItem","title":null,"visible":true},{"name":"OutputStreamSlider","title":null,"visible":false},{"name":"InputStreamSlider","title":null,"visible":false},{"name":"BrightnessItem","title":null,"visible":true},{"name":"NMWiredToggle","title":null,"visible":false},{"name":"NMWirelessToggle","title":"Sem fio (Wi-Fi)","visible":true},{"name":"NMModemToggle","title":null,"visible":false},{"name":"NMBluetoothToggle","title":null,"visible":false},{"name":"NMVpnToggle","title":null,"visible":false},{"name":"BluetoothToggle","title":"Bluetooth","visible":true},{"name":"PowerProfilesToggle","title":"Modo de energia","visible":true},{"name":"NightLightToggle","title":"Luz noturna","visible":true},{"name":"DarkModeToggle","title":"Estilo escuro","visible":true},{"name":"KeyboardBrightnessToggle","title":"Teclado","visible":false},{"name":"RfkillToggle","title":"Modo avião","visible":true},{"name":"RotationToggle","title":"Rotação automática","visible":false},{"name":"BackgroundAppsToggle","title":"Sem aplicativos em segundo plano","visible":false},{"name":"MediaSection","title":null,"visible":false},{"name":"Notifications","title":null,"visible":false}]'
+media-control-compact-mode=false
 notifications-enabled=true
-user-removed-buttons=['NightLightToggle', 'PowerProfilesToggle', 'DndQuickToogle']
+notifications-max-height=300
+notifications-use-native-controls=false
+output-show-selected=false
+user-removed-buttons=['DndQuickToogle', 'PowerProfilesToggle', 'DarkModeToggle']
 volume-mixer-enabled=false
 volume-mixer-filtered-apps=@as []
 volume-mixer-position='bottom'
@@ -664,8 +702,14 @@ volume-mixer-show-description=false
 volume-mixer-show-icon=true
 volume-mixer-use-regex=false
 
+[quicksettings-audio-devices-hider]
+available-input-names=['Microfone – Logitech G733', 'Entrada analógica – Loopback', 'Microfone – Notebook', 'Easy Effects Source']
+available-output-names=['HDMI / DisplayPort – HDA NVidia', 'Saída digital (S/PDIF) – Logitech G733', 'Saída analógica – Logitech G733', 'Saída analógica – Loopback', 'Alto-falantes – Notebook', 'Easy Effects Sink']
+excluded-input-names=['Entrada analógica – Loopback']
+excluded-output-names=['Saída digital (S/PDIF) – Logitech G733', 'Easy Effects Sink', 'HDMI / DisplayPort – HDA NVidia', 'Saída analógica – Loopback']
+
 [rounded-window-corners]
-black-list=['sunamu']
+black-list=['sunamu', 'ulauncher']
 border-color=(0.29999999999999999, 0.29999999999999999, 0.29999999999999999, 1.0)
 border-width=uint32 1
 custom-rounded-corner-settings=@a{sv} {}
@@ -675,6 +719,22 @@ settings-version=uint32 5
 skip-libadwaita-app=true
 skip-libhandy-app=false
 unfocused-shadow={'vertical_offset': 2, 'horizontal_offset': 0, 'blur_offset': 12, 'spread_radius': -1, 'opacity': 65}
+
+[search-light]
+background-color=(0.17254902422428131, 0.17254902422428131, 0.17254902422428131, 0.91333335638046265)
+blur-background=false
+blur-brightness=0.59999999999999998
+blur-sigma=43.0
+border-radius=1.3807339449541285
+border-thickness=0
+entry-font-size=1
+monitor-count=2
+popup-at-cursor-monitor=true
+scale-height=0.10000000000000001
+scale-width=0.10000000000000001
+shortcut-search=['<Control><Alt>comma']
+show-panel-icon=true
+text-color=(0.0, 0.0, 0.0, 0.0)
 
 [show-desktop-button]
 panel-position='RIGHT'
@@ -712,7 +772,7 @@ default-move-mode=0
 dynamic-keybinding-behaviour=0
 enable-tiling-popup=false
 import-layout-examples=false
-last-version-installed=39
+last-version-installed=44
 maximize-with-gap=false
 restore-window=['<Super>Down']
 screen-bottom-gap=8
@@ -746,19 +806,34 @@ toggle-tiling-popup=@as []
 [top-bar-organizer]
 center-box-order=['dateMenu']
 left-box-order=['activities', 'appMenu']
-right-box-order=['appindicator-kstatusnotifieritem-Optimus Manager Qt', 'appindicator-kstatusnotifieritem-polychromatic-tray-applet', 'tiling-assistant@leleat-on-github', 'Media Player', 'screenRecording', 'screenSharing', 'dwellClick', 'a11y', 'keyboard', 'openWeatherMenu', 'quickSettings']
+right-box-order=['appindicator-kstatusnotifieritem-indicator-solaar', 'appindicator-kstatusnotifieritem-96639850-99d4-11ee-b6d5-ed40cbbdcfcc', 'appindicator-kstatusnotifieritem-e9058be0-99b1-11ee-a03f-43054fb38d8b', 'appindicator-kstatusnotifieritem-36836dd0-9915-11ee-81ce-4f9216ceffda', 'appindicator-kstatusnotifieritem-ae7203f0-9899-11ee-b48c-b977589a0925', 'appindicator-kstatusnotifieritem-vlc', 'appindicator-kstatusnotifieritem-chrome_status_icon_1', 'appindicator-kstatusnotifieritem-Microsoft Teams - Preview1', 'appindicator-kstatusnotifieritem-59491f30-95ce-11ee-9a2a-ede8c85f9861', 'appindicator-kstatusnotifieritem-TelegramDesktop', 'docker-menu', 'docker@stickman_0x00.com', 'appindicator-kstatusnotifieritem-9c2b59a0-9590-11ee-9c7c-4f8b4f398e7f', 'appindicator-kstatusnotifieritem-steam', 'appindicator-kstatusnotifieritem-spotify-client', 'user-id-menu', 'screenRecording', 'screenSharing', 'dwellClick', 'a11y', 'keyboard', 'openWeatherMenu', 'appindicator-kstatusnotifieritem-polychromatic-tray-applet', 'quickSettings']
 
 [trayIconsReloaded]
 icon-brightness=0
 icon-padding-horizontal=6
+icon-size=16
 icons-limit=4
 invoke-to-workspace=true
 position-weight=4
-tray-margin-left=1
+tray-margin-left=0
 tray-margin-right=2
+wine-behavior=true
+
+[unite]
+autofocus-windows=false
+enable-titlebar-actions=false
+extend-left-box=false
+greyscale-tray-icons=false
+hide-activities-button='always'
+hide-window-titlebars='always'
+restrict-to-primary-screen=false
+show-desktop-name=false
+show-legacy-tray=false
+show-window-buttons='never'
+show-window-title='never'
 
 [user-theme]
-name='Colloid-Dark'
+name='Marble-blue-dark'
 
 [vitals]
 battery-slot=0

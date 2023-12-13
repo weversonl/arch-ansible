@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/jetbrains.png' ~/.local/share/applications/jetbrains-toolbox.desktop
+sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/intellij.png' ~/.local/share/applications/jetbrains-idea-ce.desktop
+#sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/datagrip.png' ~/.local/share/applications/jetbrains-datagrip.desktop

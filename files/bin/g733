@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+green="\e[32m"
+yellow="\e[33m"
+red="\e[31m"
+reset="\e[0m"
+blue="\e[34m"
+
 function banner() {
-  echo -e "   █████████  ██████████  ████████   ████████ 
+  echo -e "${blue}   █████████  ██████████  ████████   ████████ 
   ███░░░░░███░███░░░░███ ███░░░░███ ███░░░░███
  ███     ░░░ ░░░    ███ ░░░    ░███░░░    ░███
 ░███               ███     ██████░    ██████░ 
@@ -9,7 +15,7 @@ function banner() {
 ░░███  ░░███     ███     ███   ░███ ███   ░███
  ░░█████████    ███     ░░████████ ░░████████ 
   ░░░░░░░░░    ░░░       ░░░░░░░░   ░░░░░░░░  
-                                              "
+                                              ${reset}"
 }
 
 function help() {
@@ -46,7 +52,7 @@ function controlLED() {
     turnOffLED
     ;;
   *)
-    echo "To control the LED, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off"
+    echo -e "${yellow}To control the LED, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off${reset}"
     ;;
   esac
 
@@ -54,16 +60,26 @@ function controlLED() {
 
 function turnOnLED() {
   headsetcontrol -l 1 >/dev/null
-  echo "LED ON"
+  echo -e "${green}💡LED ON${reset}"
 }
 
 function turnOffLED() {
   headsetcontrol -l 0 >/dev/null
-  echo "LED OFF"
+  echo -e "${yellow}💡LED OFF${reset}"
 }
 
 function checkBattery() {
-  headsetcontrol -b | grep Battery
+  battery=$(solaar show | grep "Battery" | awk '{print $2}' | tail -n 1 | sed 's/%//')
+  if ((battery >= 0 && battery <= 25)); then
+      color=$red
+  elif ((battery >= 26 && battery <= 50)); then
+      color=$yellow
+  elif ((battery >= 51 && battery <= 100)); then
+      color=$green
+  fi
+
+  echo -e "${color}⚡️${battery}%${reset}"
+
 }
 
 function sidetone() {
@@ -78,19 +94,19 @@ function sidetone() {
     turnOffSideTone
     ;;
   *)
-    echo "To control the Sidetone, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off"
+    echo -e "${yellow}To control the Sidetone, send a parameter like: [ON/1] to turn on, or [OFF/0] to turn off${reset}"
     ;;
   esac
 }
 
 function turnOnSideTone() {
   headsetcontrol -s 128 > /dev/null
-  echo "SIDETONE ON"
+  echo -e "${green}🔊SIDETONE ON${reset}"
 }
 
 function turnOffSideTone() {
   headsetcontrol -s 0 > /dev/null
-  echo "SIDETONE OFF"
+  echo -e "${yellow}🔈️SIDETONE OFF${reset}"
 }
 
 function execution() {

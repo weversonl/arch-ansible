@@ -2,12 +2,27 @@
 
 AMARELO="\e[33m"
 VERDE="\e[32m"
+CYAN='\033[00;36m'
 
-IP_LOCAL="${VERDE}$(ip -br a | awk '{print $3}' | tail -n 1 | cut -d '/' -f 1)"
-PUBLIC_IP="${VERDE}$(curl -s ifconfig.me)" 
+IP_LOCAL="${VERDE}$(ip -br a | awk '{print $3}' | cut -d '/' -f 1 | head -n 3 | tail -n 1)"
+GATEWAY="${VERDE}$(ip route | awk '/default/ {print $3}')"
+GEO_INFO=$(curl -s ipinfo.io/geo)
+CITY=$(echo $GEO_INFO | jq ".city")
+CITY=${CITY//\"/}
+STATE=$(echo $GEO_INFO | jq ".region")
+STATE=${STATE//\"/}
+COUNTRY=$(echo $GEO_INFO | jq ".country")
+COUNTRY=${COUNTRY//\"/}
+IP=$(echo $GEO_INFO | jq ".ip")
+IP=${IP//\"/}
+PUBLIC_IP="${VERDE}${IP}"
 
 LABEL_LOCAL="${AMARELO}Local"
 LABEL_PUBLIC="${AMARELO}Public"
+LABEL_GATEWAY="${AMARELO}Gateway"
+
 
 echo -e "$LABEL_LOCAL: $IP_LOCAL"
 echo -e "$LABEL_PUBLIC: $PUBLIC_IP"
+echo -e "$LABEL_GATEWAY: $GATEWAY"
+echo -e "${CYAN}$CITY - $STATE / $COUNTRY"

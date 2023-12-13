@@ -1,0 +1,168 @@
+{
+  // EDITOR CONFIG
+  "editor.fontFamily": "Cascadia Mono",
+  "editor.fontSize": 22,
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "on",
+  "editor.suggestSelection": "first",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.guides.bracketPairs": true,
+  "redhat.telemetry.enabled": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  // TERMINAL CONFIG
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontWeight": "800",
+  "security.workspace.trust.untrustedFiles": "open",
+  // LANGUAGE CONFIG
+  // "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/verso/.vscode-oss/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+  "workbench.iconTheme": "material-icon-theme",
+  // PRETIFFY CONFIG | FORMAT DOCUMENT
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // FILES CONFIG
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.project": true,
+    "**/.settings": true
+  },
+  "files.associations": {
+    "*.java": "java"
+  },
+  // OTHERS CONFIG
+  "explorer.confirmDelete": false,
+  "editor.unicodeHighlight.allowedCharacters": {
+    " ": true
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "boot-java.rewrite.reconcile": true,
+  "sonarlint.analyzerProperties": {},
+  "sonarlint.ls.javaHome": "/home/verso/.asdf/installs/java/openjdk-17.0.2/",
+  "spring-boot.ls.java.home": "/home/verso/.asdf/installs/java/openjdk-17.0.2/",
+  "sonarlint.pathToNodeExecutable": "/usr/bin/node",
+  "CodeGPT.query.language": "Portuguese",
+  "maven.executable.path": "/home/verso/.asdf/installs/maven/3.8.7/bin/mvn",
+  "git.openRepositoryInParentFolders": "never",
+  "python.languageServer": "Pylance",
+  "cSpell.language": "en,pt,pt-BR",
+  "typescript.npm": "/home/verso/.asdf/shims/npm",
+  "code-runner.executorMapByFileExtension": {
+    ".vb": "cd $dir && vbc /nologo $fileName && $dir$fileNameWithoutExt",
+    ".vbs": "cscript //Nologo",
+    ".scala": "scala",
+    ".jl": "julia",
+    ".cr": "crystal",
+    ".ml": "ocaml",
+    ".zig": "zig run",
+    ".exs": "elixir",
+    ".hx": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+    ".rkt": "racket",
+    ".scm": "csi -script",
+    ".ahk": "autohotkey",
+    ".au3": "autoit3",
+    ".kt": "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar",
+    ".kts": "kotlinc -script",
+    ".dart": "dart",
+    ".pas": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    ".pp": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    ".d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+    ".hs": "runhaskell",
+    ".nim": "nim compile --verbosity:0 --hints:off --run",
+    ".csproj": "dotnet run --project",
+    ".fsproj": "dotnet run --project",
+    ".lisp": "sbcl --script",
+    ".kit": "kitc --run",
+    ".v": "v run",
+    ".vsh": "v run",
+    ".sass": "sass --style expanded",
+    ".cu": "cd $dir && nvcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    ".ring": "ring",
+    ".sml": "cd $dir && sml $fileName",
+    ".js": "node"
+  },
+  "code-runner.executorMapByGlob": {
+    "pom.xml": "cd $dir && mvn clean package"
+  },
+  "spring.initializr.defaultGroupId": "br.com.widsl",
+  "spring.initializr.defaultLanguage": "Java",
+  "spring.initializr.defaultOpenProjectMethod": "Open",
+  "spring.initializr.defaultPackaging": "JAR",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/home/verso/.asdf/installs/java/adoptopenjdk-8.0.382+5",
+    },
+    {
+      "name": "JavaSE-17",
+      "path": "/home/verso/.asdf/installs/java/openjdk-17.0.2",
+    },
+  ],
+  "cSpell.userWords": [
+    "adoptopenjdk",
+    "assertj",
+    "AUTOINCREMENT",
+    "Cacheable",
+    "Cascadia",
+    "classpath",
+    "dburi",
+    "factorypath",
+    "fileshare",
+    "github",
+    "httpie",
+    "ILIKE",
+    "initializr",
+    "javaagent",
+    "JDBC",
+    "jupiter",
+    "Kafdrop",
+    "lombok",
+    "mattn",
+    "Meslo",
+    "mockito",
+    "mydatabase",
+    "psql",
+    "redhat",
+    "rinhabackend",
+    "runtimes",
+    "servlet",
+    "sonarlint",
+    "sqlite",
+    "vmargs",
+    "Weverson",
+    "widsl"
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "sonarlint.rules": {
+    "java:S5976": {
+      "level": "off"
+    }
+  },
+  "workbench.editor.empty.hint": "hidden"
+}
