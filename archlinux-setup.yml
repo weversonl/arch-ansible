@@ -172,6 +172,9 @@
             - pavucontrol
             - starship
             - devtools
+            - solaar
+            - ghex
+            - hexyl
 
     - block:
         - name: Adding existing user to group Docker
@@ -218,6 +221,8 @@
             - localsend-bin
             - insomnia-bin
             - heroic-games-launcher-bin
+            - gdm-prime
+            - gdm-settings
 
     - block:
         - name: Verify if Oh-My-zsh is installed
