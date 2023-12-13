@@ -1,5 +1,5 @@
-atuais.txt
 battery
+binaries.txt
 brilho
 brilho-minimo
 check-wine-arch
@@ -9,6 +9,7 @@ convert-video
 cpu
 dock-brightness
 fan-speed
+fix-jetbrains
 folder-size
 full-update
 g733
@@ -19,6 +20,7 @@ ram
 rastreio
 restore-grid
 root-anbox
+setup-mouse
 show-ip
 shutdown-user
 temperatura
