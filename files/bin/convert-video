@@ -26,12 +26,18 @@ FORMAT_OUTPUT=$2
 
 if [[ ! -z $3 && "$3" == "--exclude" ]]; then
   for video in *.$FORMAT_INPUT; do 
-    ffmpeg -i $video "${video%.$FORMAT_INPUT}.${FORMAT_OUTPUT}";
-    rm -rf $video
+    output="${video%.$FORMAT_INPUT}.${FORMAT_OUTPUT}"
+    if [[ ! -e $output ]]; then
+      ffmpeg -i "$video" "$output"
+      rm -rf "$video"
+    fi
   done
   exit
 fi
 
 for video in *.$FORMAT_INPUT; do 
-  ffmpeg -i $video "${video%.$FORMAT_INPUT}.${FORMAT_OUTPUT}";
+  output="${video%.$FORMAT_INPUT}.${FORMAT_OUTPUT}"
+  if [[ ! -e $output ]]; then
+    ffmpeg -i "$video" "$output"
+  fi
 done

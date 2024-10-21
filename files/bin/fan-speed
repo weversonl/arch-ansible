@@ -5,13 +5,10 @@ MODE=$1
 function help() {
     echo "fan-speed -a [Para ajustar automaticamente a velocidade das FANS]"
     echo "fan-speed 10-100 [Para ajustar a velocidade das FANS entre 10% a 100%]"
+    echo "fan-speed status [para obter status das fans]"
     exit
 }
 
-if (($(id -u) != 0)); then
-    echo "Run as sudo"
-    exit
-fi
 
 if [[ -z $MODE ]]; then
     help
@@ -19,10 +16,22 @@ fi
 
 case $MODE in
 -a)
-    nbfc stop >/dev/null 2>&1
+    if (($(id -u) != 0)); then
+      echo "Run as sudo"
+      exit
+    fi
+    nbfc set -a >/dev/null 2>&1
     echo "FANS ajustadas para modo automático."
     ;;
+status)
+    nbfc status -a
+    ;;
 --help | -h | *)
+
+    if (($(id -u) != 0)); then
+      echo "Run as sudo"
+      exit
+    fi
 
     if [[ $MODE -gt 100 ]]; then
         MODE=100

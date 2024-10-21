@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Substitua por seu endereço de servidor
+SERVER="192.168.3.24"
+
+# Realiza o ping
+if ping -c 1 $SERVER &> /dev/null
+then
+    echo -e "\e[32mUP\e[0m"
+else
+    echo -e "\e[31mdown\e[0m"
+fi
+

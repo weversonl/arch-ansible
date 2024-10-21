@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Verifica se foi fornecido um arquivo ou diretório como argumento
+if [ $# -eq 0 ]; then
+  echo "Por favor, forneça o caminho do arquivo ou diretório como argumento."
+  exit 1
+fi
+
+# Obtém o tamanho do arquivo ou diretório em bytes
+file_size=$(du -sb "$1" | awk '{print $1}')
+
+# Converte o tamanho para B, KB, MB ou GB, conforme necessário
+if [ $file_size -lt 1024 ]; then
+  # Menos de 1KB, exibe em B
+  echo "$file_size B"
+elif [ $file_size -lt 1000000 ]; then
+  # 1KB ou mais, mas menos de 1MB, exibe em KB
+  size_human=$(echo "scale=2; $file_size / 1024" | bc)
+  echo "$size_human KB"
+elif [ $file_size -lt 1000000000 ]; then
+  # 1MB ou mais, mas menos de 1GB, exibe em MB
+  size_human=$(echo "scale=2; $file_size / 1024 / 1024" | bc)
+  echo "$size_human MB"
+else
+  # 1GB ou mais, exibe em GB
+  size_human=$(echo "scale=2; $file_size / 1024 / 1024 / 1024" | bc)
+  echo "$size_human GB"
+fi
+

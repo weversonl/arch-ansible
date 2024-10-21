@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+green="\e[32m"
+yellow="\e[33m"
+red="\e[31m"
+reset="\e[0m"
+
+battery=$(upower -i /org/freedesktop/UPower/devices/headset_dev_40_35_E6_02_43_ED | /bin/grep -oP 'percentage:\s+\K\d+%' | awk -F'%' '{print $1}')
+
+if ((battery >= 0 && battery <= 25)); then
+  color=$red
+elif ((battery >= 26 && battery <= 50)); then
+  color=$yellow
+elif ((battery >= 51 && battery <= 100)); then
+  color=$green
+fi
+
+echo -e "${color}⚡️${battery}%${reset}"

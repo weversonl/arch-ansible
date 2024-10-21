@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Verifica se há um dispositivo ADB conectado
+adb_devices=$(adb devices | grep -w "device")
+if [ -z "$adb_devices" ]; then
+  echo "Erro: Nenhum dispositivo ADB conectado."
+  exit 1
+fi
+
+# Verifica o parâmetro passado
+case "$1" in
+  front)
+    scrcpy --video-source=camera --camera-size=1920x1080 --camera-facing=front --v4l2-sink=/dev/video0 --no-playback
+    ;;
+  back)
+    scrcpy --video-source=camera --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-playback
+    ;;
+  *)
+    echo "Uso: webcam {front|back}"
+    exit 1
+    ;;
+esac
+

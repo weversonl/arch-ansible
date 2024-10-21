@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/jetbrains.png' ~/.local/share/applications/jetbrains-toolbox.desktop
-sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/intellij.png' ~/.local/share/applications/jetbrains-idea-ce.desktop
-#sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/datagrip.png' ~/.local/share/applications/jetbrains-datagrip.desktop
+sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/intellij2.png' ~/.local/share/applications/jetbrains-idea-03980e78-0d06-49ca-9bc6-4180b47df285.desktop
+sed -i '/Icon=/c\Icon=\/home\/verso\/.icons\/ico\/datagrip.png' ~/.local/share/applications/jetbrains-datagrip-e1a0130b-0473-4a9e-b795-c8ac57f077fd.desktop

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 VERDE="\033[32m"
-AZUL="\033[34m" 
-VERMELHO="\033[31m" 
+AZUL="\033[34m"
+VERMELHO="\033[31m"
 AMARELO="\e[33m"
 
 AMD="${VERMELHO}⚪️"
@@ -17,50 +17,54 @@ function help() {
   exit
 }
 
-# function validate() {
-
-#   if (($(id -u) != 0)); then
-#     echo -e "${VERMELHO}Run as sudo!"
-#     exit
-#   fi
-
-# }
+function validate() {
+  if (($(id -u) != 0)); then
+     echo -e "${VERMELHO}Run as sudo!"
+     exit
+  fi
+}
 
 case $1 in
 amd | a | A)
-    #validate
-    yes y | optimus-manager --no-confirm --switch integrated > /dev/null 2>&1
+    validate
+    #yes y | optimus-manager --no-confirm --switch integrated > /dev/null 2>&1
+    envycontrol -s integrated
     if [ $? -ne 0 ]; then
         echo -e "${VERMELHO}Unable to select GPU amd. Run ${AMARELO}'optimus-manager --switch integrated'${VERMELHO} and see the output for correction"
     else
         echo -e "${AMARELO}AMD GPU selected${AMD}"
+        echo "AMD" > ${HOME}/.gpu
     fi
     ;;
 nvidia | n | N)
-    #validate
-    yes y | optimus-manager --no-confirm --switch nvidia > /dev/null 2>&1
+    validate
+    #yes y | optimus-manager --no-confirm --switch nvidia > /dev/null 2>&1
+    envycontrol -s nvidia --force-comp --coolbits 24 --dm gdm
     if [ $? -ne 0 ]; then
         echo -e "${VERMELHO}Unable to select GPU nvidia. Run ${AMARELO}'optimus-manager --switch nvidia'${VERMELHO} and see the output for correction"
     else
         echo -e "${AMARELO}NVIDIA GPU selected${NVIDIA}"
+        echo "NVIDIA" > ${HOME}/.gpu
     fi
     ;;
 hybrid | h | H)
-    #validate
-    yes y | optimus-manager --no-confirm --switch hybrid > /dev/null 2>&1
+    validate
+    #yes y | optimus-manager --no-confirm --switch hybrid > /dev/null 2>&1
+    envycontrol -s hybrid
     if [ $? -ne 0 ]; then
         echo -e "${VERMELHO}Unable to select GPU hybrid. Run ${AMARELO}'optimus-manager --switch hybrid'${VERMELHO} and see the output for correction"
     else
         echo -e "${AMARELO}HYBRID GPU's selected${HYBRID}"
+        echo "HYBRID" > ${HOME}/.gpu
     fi
     ;;
 status | s | S)
-    USED=$(optimus-manager --print-mode | awk '{print $5}')
-    if [[ "$USED" = "hybrid" ]]; then
+    USED=$(cat ${HOME}/.gpu)
+    if [[ "$USED" = "HYBRID" ]]; then
         echo -e "${AMARELO}SELECTED GPU: ${AZUL}HYBRID${HYBRID}"
-    elif [[ "$USED" = "integrated" ]]; then
+    elif [[ "$USED" = "AMD" ]]; then
         echo -e "${AMARELO}SELECTED GPU: ${VERMELHO}AMD${AMD}"
-    elif [[ "$USED" = "nvidia" ]]; then
+    elif [[ "$USED" = "NVIDIA" ]]; then
         echo -e "${AMARELO}SELECTED GPU: ${VERDE}NVIDIA${NVIDIA}"
     fi
     ;;

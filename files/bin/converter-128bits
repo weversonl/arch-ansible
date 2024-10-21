@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Diretório onde estão os arquivos MP3 originais
+input_dir="."
+
+# Diretório para salvar os arquivos convertidos
+output_dir="./converted"
+
+# Cria o diretório de saída se ele não existir
+mkdir -p "$output_dir"
+
+# Loop através de todos os arquivos MP3 no diretório de entrada
+for file in "$input_dir"/*.mp3; do
+  # Extrai o nome do arquivo sem a extensão
+  base_name=$(basename "$file" .mp3)
+
+  # Define o caminho do arquivo de saída
+  output_file="$output_dir/${base_name}_128kbps.mp3"
+
+  # Converte o arquivo para 128 kbps
+  ffmpeg -i "$file" -b:a 128k "$output_file"
+done
+
