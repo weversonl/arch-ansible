@@ -1,5 +1,30 @@
+[advanced-alt-tab-window-switcher]
+animation-time-factor=80
+app-switcher-popup-filter=3
+app-switcher-popup-show-wins-on-activate=0
+hot-edge-fullscreen=false
+hot-edge-position=0
+hot-edge-pressure=130
+show-dash=1
+switcher-popup-ext-app-favorites=false
+switcher-popup-ext-app-stable=false
+switcher-popup-monitor=3
+switcher-popup-pointer=false
+switcher-popup-position=2
+switcher-popup-reverse-auto=false
+
 [alphabetical-app-grid]
 sort-folder-contents=true
+
+[altTab-mod]
+current-monitor-only=true
+current-monitor-only-window=true
+current-workspace-only=true
+current-workspace-only-window=true
+disable-hover-select=false
+focus-on-select-window=false
+raise-first-instance-only=true
+remove-delay=true
 
 [appindicator]
 custom-icons=@a(sss) []
@@ -7,6 +32,7 @@ icon-brightness=2.7755575615628914e-17
 icon-opacity=240
 icon-saturation=2.7755575615628914e-17
 icon-size=0
+legacy-tray-enabled=true
 
 [arcmenu]
 activate-on-hover=true
@@ -245,55 +271,70 @@ show-battery-icon-on=true
 show-battery-value-on=true
 
 [blur-my-shell]
-hacks-level=3
+hacks-level=1
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}}
+settings-version=2
 
 [blur-my-shell/appfolder]
-blur=true
-brightness=0.0
-customize=false
+blur=false
+brightness=0.59999999999999998
 dialog-opacity=0.02
-sigma=0
+sigma=30
 
 [blur-my-shell/applications]
-blur=false
+blur=true
 blur-on-overview=false
 brightness=1.0
-customize=true
 enable-all=false
 opacity=215
 sigma=50
-whitelist=['cartridges']
+whitelist=['kgx']
+
+[blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
 
 [blur-my-shell/dash-to-dock]
 blur=false
-brightness=0.77000000000000002
-customize=false
+brightness=0.59999999999999998
 override-background=false
-sigma=24
+pipeline='pipeline_default'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
 unblur-in-overview=false
+
+[blur-my-shell/dash-to-panel]
+blur-original-panel=false
 
 [blur-my-shell/hidetopbar]
 compatibility=false
 
+[blur-my-shell/lockscreen]
+blur=false
+pipeline='pipeline_default'
+
 [blur-my-shell/overview]
-blur=true
-brightness=0.5
-customize=true
-noise-amount=0.0
-noise-lightness=0.0
-sigma=20
+blur=false
+pipeline='pipeline_default'
 style-components=2
 
 [blur-my-shell/panel]
 brightness=0.59999999999999998
-customize=false
-sigma=70
+override-background=true
+pipeline='pipeline_default'
+sigma=30
 static-blur=true
 unblur-dynamically=false
 unblur-in-overview=true
 
 [blur-my-shell/screenshot]
-blur=true
+blur=false
+pipeline='pipeline_default'
+
+[blur-my-shell/window-list]
+blur=false
+brightness=0.59999999999999998
+sigma=30
 
 [burn-my-windows]
 active-profile='/home/verso/.config/burn-my-windows/profiles/1677759210974425.conf'
@@ -375,6 +416,8 @@ theme-shell=false
 animate-show-apps=true
 apply-custom-theme=true
 apply-glossy-effect=false
+autohide=true
+autohide-in-fullscreen=false
 background-color='rgb(48,48,48)'
 background-opacity=1.0
 click-action='focus-minimize-or-previews'
@@ -396,8 +439,8 @@ hide-tooltip=false
 hotkeys-overlay=true
 hotkeys-show-dock=true
 icon-size-fixed=false
-intellihide=true
-intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+intellihide=false
+intellihide-mode='ALL_WINDOWS'
 isolate-locations=true
 isolate-monitors=true
 isolate-workspaces=true
@@ -405,10 +448,10 @@ manualhide=false
 max-alpha=0.80000000000000004
 middle-click-action='previews'
 min-alpha=0.59999999999999998
-multi-monitor=true
+multi-monitor=false
 preferred-monitor=-2
 preferred-monitor-by-connector='HDMI-0'
-preview-size-scale=0.0
+preview-size-scale=0.20000000000000001
 running-indicator-dominant-color=false
 running-indicator-style='DOTS'
 scroll-action='cycle-windows'
@@ -417,6 +460,7 @@ shift-click-action='previews'
 shift-middle-click-action='previews'
 shortcut-timeout=1.5
 show-apps-at-top=false
+show-dock-urgent-notify=false
 show-favorites=true
 show-icons-emblems=false
 show-mounts=false
@@ -516,8 +560,8 @@ restrict-to-primary-screen=false
 [hidetopbar]
 animation-time-autohide=0.20000000000000004
 animation-time-overview=0.40000000000000002
-enable-active-window=true
-enable-intellihide=true
+enable-active-window=false
+enable-intellihide=false
 hot-corner=false
 keep-round-corners=false
 mouse-sensitive=true
@@ -555,7 +599,7 @@ hot-corner=false
 keyboard-layout=true
 looking-glass-height=0
 looking-glass-width=0
-notification-banner-position=1
+notification-banner-position=2
 osd=true
 panel=true
 panel-arrow=true
@@ -579,20 +623,28 @@ window-picker-icon=true
 window-preview-caption=true
 workspace=true
 workspace-background-corner-size=0
+workspace-peek=true
 workspace-popup=true
 workspace-switcher-size=0
 workspaces-in-app-grid=true
 world-clock=false
 
+[libpanel]
+layout=[['gnome@main', 'quick-settings-audio-panel@rayzeq.github.io/main']]
+
 [mediacontrols]
 colored-player-icon=true
 element-order=['icon', 'title', 'controls', 'menu']
 extension-index=0
-extension-position='right'
+extension-position='Right'
+fixed-label-width=false
+hide-media-notification=true
+label-width=uint32 200
 max-widget-width=250
 mouse-actions=['toggle_info', 'none', 'none', 'none', 'none', 'none', 'none', 'none']
 seperator-chars=['|', '|']
 show-control-icons=false
+show-label=false
 show-next-icon=false
 show-player-icon=true
 show-playpause-icon=false
@@ -620,7 +672,7 @@ duration=260.0
 
 [notification-banner-reloaded]
 anchor-horizontal=1
-padding-horizontal=5
+padding-horizontal=10
 padding-vertical=10
 
 [notification-timeout]
@@ -674,6 +726,13 @@ wm-instance=''
 [privacy-menu]
 move-icon-right=true
 
+[quick-settings-audio-panel]
+create-mixer-sliders=false
+create-sink-mixer=false
+merge-panel=false
+ordering=['volume-output', 'volume-input', 'sink-mixer', 'media', 'mixer']
+panel-position='top'
+
 [quick-settings-avatar]
 avatar-position=1
 
@@ -688,8 +747,9 @@ add-dnd-quick-toggle-enabled=false
 disable-adjust-content-border-radius=false
 disable-remove-shadow=false
 input-always-show=false
-list-buttons='[{"name":"SystemItem","title":null,"visible":true},{"name":"OutputStreamSlider","title":null,"visible":false},{"name":"InputStreamSlider","title":null,"visible":false},{"name":"BrightnessItem","title":null,"visible":true},{"name":"NMWiredToggle","title":null,"visible":false},{"name":"NMWirelessToggle","title":"Sem fio (Wi-Fi)","visible":true},{"name":"NMModemToggle","title":null,"visible":false},{"name":"NMBluetoothToggle","title":null,"visible":false},{"name":"NMVpnToggle","title":null,"visible":false},{"name":"BluetoothToggle","title":"Bluetooth","visible":true},{"name":"PowerProfilesToggle","title":"Modo de energia","visible":true},{"name":"NightLightToggle","title":"Luz noturna","visible":true},{"name":"DarkModeToggle","title":"Estilo escuro","visible":true},{"name":"KeyboardBrightnessToggle","title":"Teclado","visible":false},{"name":"RfkillToggle","title":"Modo avião","visible":true},{"name":"RotationToggle","title":"Rotação automática","visible":false},{"name":"BackgroundAppsToggle","title":"Sem aplicativos em segundo plano","visible":false},{"name":"MediaSection","title":null,"visible":false},{"name":"Notifications","title":null,"visible":false}]'
+list-buttons='[{"name":"SystemItem","title":null,"visible":true},{"name":"OutputStreamSlider","title":null,"visible":true},{"name":"InputStreamSlider","title":null,"visible":false},{"name":"BrightnessItem","title":null,"visible":true},{"name":"NMWiredToggle","title":null,"visible":false},{"name":"NMWirelessToggle","title":"Sem fio (Wi-Fi)","visible":true},{"name":"NMModemToggle","title":null,"visible":false},{"name":"NMBluetoothToggle","title":null,"visible":false},{"name":"NMVpnToggle","title":null,"visible":false},{"name":"BluetoothToggle","title":"Bluetooth","visible":true},{"name":"PowerProfilesToggle","title":"Modo de energia","visible":false},{"name":"NightLightToggle","title":"Luz noturna","visible":true},{"name":"DarkModeToggle","title":"Estilo escuro","visible":true},{"name":"KeyboardBrightnessToggle","title":"Teclado","visible":false},{"name":"RfkillToggle","title":"Modo avião","visible":true},{"name":"RotationToggle","title":"Rotação automática","visible":false},{"name":"BackgroundAppsToggle","title":"Sem aplicativos em segundo plano","visible":false},{"name":"MediaSection","title":null,"visible":false},{"name":"Notifications","title":null,"visible":false}]'
 media-control-compact-mode=false
+media-control-enabled=true
 notifications-enabled=true
 notifications-max-height=300
 notifications-use-native-controls=false
@@ -703,10 +763,20 @@ volume-mixer-show-icon=true
 volume-mixer-use-regex=false
 
 [quicksettings-audio-devices-hider]
-available-input-names=['Microfone – Logitech G733', 'Entrada analógica – Loopback', 'Microfone – Notebook', 'Easy Effects Source']
-available-output-names=['HDMI / DisplayPort – HDA NVidia', 'Saída digital (S/PDIF) – Logitech G733', 'Saída analógica – Logitech G733', 'Saída analógica – Loopback', 'Alto-falantes – Notebook', 'Easy Effects Sink']
-excluded-input-names=['Entrada analógica – Loopback']
-excluded-output-names=['Saída digital (S/PDIF) – Logitech G733', 'Easy Effects Sink', 'HDMI / DisplayPort – HDA NVidia', 'Saída analógica – Loopback']
+available-input-names=['Analog Input – Loopback', 'Microphone – Family 17h/19h HD Audio Controller']
+available-output-names=['Speakers – Family 17h/19h HD Audio Controller', 'HDMI / DisplayPort – HDA NVidia', 'Analog Output – Loopback']
+excluded-input-names=['Entrada analógica – Loopback', 'Microphone – Family 17h/19h HD Audio Controller', 'Handsfree – Buds 3 Pro']
+excluded-output-names=['Saída digital (S/PDIF) – Logitech G733', 'Easy Effects Sink', 'HDMI / DisplayPort – HDA NVidia', 'Saída analógica – Loopback', 'Digital Output (S/PDIF) – G733 Gaming Headset', 'Handsfree – Buds 3 Pro', 'Digital Output (S/PDIF) – Logitech G733', 'Analog Output – Loopback', 'Handsfree – Galaxy Buds 2']
+
+[quicksettings-audio-devices-renamer]
+input-names-map={'Microphone – Family 17h/19h HD Audio Controller': 'Notebook', 'Microphone – G733 Gaming Headset': 'Logitech G733', 'Easy Effects Source': 'Logitech G733 ANC', 'Microfone – G733 Gaming Headset': 'Microfone – G733 Gaming Headset', 'Microfone – Family 17h/19h HD Audio Controller': 'Microfone – Family 17h/19h HD Audio Controller', 'Microfone – Logitech G733': 'Microfone – Logitech G733', 'Microfone – Notebook': 'Microfone – Notebook', 'Microphone – Logitech G733': 'Microphone – Logitech G733', 'Microphone – Notebook': 'Microphone – Notebook', 'Handsfree – Redmi Buds 3 Pro': 'Handsfree – Redmi Buds 3 Pro', 'Handsfree – Buds 3 Pro': 'Buds 3 Pro', 'Analog Input – Loopback': 'Analog Input – Loopback', 'Handsfree – Galaxy Buds 2': 'Galaxy Buds 2', 'Galaxy Buds 2': 'Galaxy Buds 2', 'G733 Gaming Headset Pro': 'G733 Gaming Headset Pro', 'vencord-screen-share': 'vencord-screen-share'}
+output-names-map={'HDMI / DisplayPort – HDA NVidia': 'HDMI / DisplayPort – HDA NVidia', 'Speakers – Family 17h/19h HD Audio Controller': 'Notebook', 'Digital Output (S/PDIF) – G733 Gaming Headset': 'Logitech G733 Digital', 'Analog Output – G733 Gaming Headset': 'Logitech G733', 'Easy Effects Sink': 'Easy Effects Sink', 'Dummy Output': 'Dummy Output', 'Saída digital (S/PDIF) – G733 Gaming Headset': 'Saída digital (S/PDIF) – G733 Gaming Headset', 'Saída analógica – G733 Gaming Headset': 'Saída analógica – G733 Gaming Headset', 'Alto-falantes – Family 17h/19h HD Audio Controller': 'Alto-falantes – Family 17h/19h HD Audio Controller', 'Saída digital (S/PDIF) – Logitech G733': 'Saída digital (S/PDIF) – Logitech G733', 'Saída analógica – Logitech G733': 'Saída analógica – Logitech G733', 'Alto-falantes – Notebook': 'Alto-falantes – Notebook', 'Digital Output (S/PDIF) – Logitech G733': 'Logitech G733 Digital 22', 'Analog Output – Logitech G733': 'Logitech G733 22', 'Speakers – Notebook': 'Notebook2', 'Handsfree – Redmi Buds 3 Pro': 'Handsfree – Redmi Buds 3 Pro', 'Headset – Redmi Buds 3 Pro': 'Headset – Redmi Buds 3 Pro', 'Handsfree – Buds 3 Pro': 'Handsfree – Buds 3 Pro', 'Headset – Buds 3 Pro': 'Buds 3 Pro', 'Analog Output – Loopback': 'Analog Output – Loopback', 'Handsfree – Galaxy Buds 2': 'Handsfree – Galaxy Buds 2', 'Headset – Galaxy Buds 2': 'Galaxy Buds 2', 'G733 Gaming Headset Pro': 'G733 Gaming Headset Pro', 'HDA NVidia Digital Surround 5.1 (HDMI/AC3)': 'HDA NVidia Digital Surround 5.1 (HDMI/AC3)', 'HDA NVidia Pro': 'HDA NVidia Pro', 'HDA NVidia Pro 7': 'HDA NVidia Pro 7', 'HDA NVidia Pro 8': 'HDA NVidia Pro 8', 'HDA NVidia Pro 9': 'HDA NVidia Pro 9'}
+
+[rounded-window-corners-reborn]
+black-list=['ulauncher']
+blacklist=['ulauncher']
+settings-version=uint32 6
+skip-libhandy-app=false
 
 [rounded-window-corners]
 black-list=['sunamu', 'ulauncher']
@@ -806,13 +876,17 @@ toggle-tiling-popup=@as []
 [top-bar-organizer]
 center-box-order=['dateMenu']
 left-box-order=['activities', 'appMenu']
-right-box-order=['appindicator-kstatusnotifieritem-indicator-solaar', 'appindicator-kstatusnotifieritem-96639850-99d4-11ee-b6d5-ed40cbbdcfcc', 'appindicator-kstatusnotifieritem-e9058be0-99b1-11ee-a03f-43054fb38d8b', 'appindicator-kstatusnotifieritem-36836dd0-9915-11ee-81ce-4f9216ceffda', 'appindicator-kstatusnotifieritem-ae7203f0-9899-11ee-b48c-b977589a0925', 'appindicator-kstatusnotifieritem-vlc', 'appindicator-kstatusnotifieritem-chrome_status_icon_1', 'appindicator-kstatusnotifieritem-Microsoft Teams - Preview1', 'appindicator-kstatusnotifieritem-59491f30-95ce-11ee-9a2a-ede8c85f9861', 'appindicator-kstatusnotifieritem-TelegramDesktop', 'docker-menu', 'docker@stickman_0x00.com', 'appindicator-kstatusnotifieritem-9c2b59a0-9590-11ee-9c7c-4f8b4f398e7f', 'appindicator-kstatusnotifieritem-steam', 'appindicator-kstatusnotifieritem-spotify-client', 'user-id-menu', 'screenRecording', 'screenSharing', 'dwellClick', 'a11y', 'keyboard', 'openWeatherMenu', 'appindicator-kstatusnotifieritem-polychromatic-tray-applet', 'quickSettings']
+right-box-order=['appindicator-kstatusnotifieritem-291a8900-e314-11ee-ba52-7363b14ec09a', 'appindicator-kstatusnotifieritem-08edf3c0-e313-11ee-ae36-7d62dbac4248', 'appindicator-kstatusnotifieritem-efe12f10-ddb7-11ee-8ebb-8563fd16c031', 'appindicator-kstatusnotifieritem-d5600ee0-ddb7-11ee-97f2-217586d5861c', 'appindicator-kstatusnotifieritem-c42a31b0-ddb6-11ee-910c-af9d72a057d8', 'appindicator-kstatusnotifieritem-ae739190-dca8-11ee-91c3-8b7c3aba9198', 'appindicator-kstatusnotifieritem-80309220-dca7-11ee-acf4-b59ae55295c4', 'appindicator-kstatusnotifieritem-bae55240-dc41-11ee-b4a5-61d71c4e22c0', 'appindicator-kstatusnotifieritem-d13cc6f0-dc36-11ee-8b9e-f5fd195cba7a', 'appindicator-kstatusnotifieritem-toolbox', 'appindicator-kstatusnotifieritem-a9641130-d9f0-11ee-bcba-23ce6034ad31', 'appindicator-kstatusnotifieritem-obs', 'appindicator-kstatusnotifieritem-b6761fc0-d587-11ee-a7b6-93a72a51e5aa', 'appindicator-kstatusnotifieritem-spotify-client', 'appindicator-kstatusnotifieritem-14c586c0-cf65-11ee-bef2-538025fecf61', 'appindicator-kstatusnotifieritem-chrome_status_icon_1', 'appindicator-kstatusnotifieritem-TelegramDesktop', 'appindicator-kstatusnotifieritem-vlc', 'appindicator-kstatusnotifieritem-steam', 'appindicator-kstatusnotifieritem-qBittorrent', 'appindicator-kstatusnotifieritem-Microsoft Teams - Preview1', 'TrayIconsReloaded', 'user-id-menu', 'screenRecording', 'screenSharing', 'dwellClick', 'a11y', 'keyboard', 'appindicator-kstatusnotifieritem-Optimus Manager Qt', 'appindicator-kstatusnotifieritem-polychromatic-tray-applet', 'quickSettings']
 
 [trayIconsReloaded]
+applications='[]'
 icon-brightness=0
-icon-padding-horizontal=6
+icon-margin-horizontal=4
+icon-margin-vertical=0
+icon-padding-horizontal=2
+icon-saturation=0
 icon-size=16
-icons-limit=4
+icons-limit=5
 invoke-to-workspace=true
 position-weight=4
 tray-margin-left=0
@@ -833,7 +907,7 @@ show-window-buttons='never'
 show-window-title='never'
 
 [user-theme]
-name='Marble-blue-dark'
+name='default-pure'
 
 [vitals]
 battery-slot=0

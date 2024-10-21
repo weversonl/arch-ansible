@@ -1,22 +1,67 @@
 {
   // EDITOR CONFIG
-  "editor.fontFamily": "Cascadia Mono",
-  "editor.fontSize": 22,
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontSize": 18,
+  "editor.lineHeight": 1.5,
+  "editor.rulers": [120],
   "editor.fontLigatures": true,
   "editor.wordWrap": "on",
   "editor.suggestSelection": "first",
   "editor.unicodeHighlight.nonBasicASCII": false,
   "editor.guides.bracketPairs": true,
-  "redhat.telemetry.enabled": true,
+  "editor.renderLineHighlight": "gutter",
+  "editor.semanticHighlighting.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "auto",
+  "editor.scrollbar.horizontal": "hidden",
+
+  // EXPLORER
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
+
+  // OTHERS
+  "symbols.hidesExplorerArrows": false,
+  "breadcrumbs.enabled": false,
+  "redhat.telemetry.enabled": false,
   "liveServer.settings.donotShowInfoMsg": true,
+  "security.workspace.trust.untrustedFiles": "open",
+
+
   // TERMINAL CONFIG
   "terminal.integrated.fontFamily": "MesloLGS NF",
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 17,
   "terminal.integrated.fontWeight": "800",
-  "security.workspace.trust.untrustedFiles": "open",
-  // LANGUAGE CONFIG
-  // "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/verso/.vscode-oss/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
-  "workbench.iconTheme": "material-icon-theme",
+
+  // WORKBANCH
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.labelFormat": "short",
+  "workbench.iconTheme": "symbols",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.colorTheme": "Min Dark",
+  "workbench.statusBar.visible": true,
+
+  // WINDOW
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 1,
+  "window.menuBarVisibility": "toggle",
+  "window.commandCenter": true,
+
+
+  // APC EXT
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset"
+  },
+
+  // "apc.font.family": "Cascadia Code",
+  "apc.listRow": {
+    "height": 22
+  },
+
+  "apc.stylesheet": {
+    ".title-label > h2": "display: none"
+  },
+
   // PRETIFFY CONFIG | FORMAT DOCUMENT
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -43,6 +88,7 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+
   // FILES CONFIG
   "files.autoSave": "afterDelay",
   "files.exclude": {
@@ -54,8 +100,8 @@
   "files.associations": {
     "*.java": "java"
   },
+
   // OTHERS CONFIG
-  "explorer.confirmDelete": false,
   "editor.unicodeHighlight.allowedCharacters": {
     " ": true
   },
@@ -66,13 +112,12 @@
   "sonarlint.analyzerProperties": {},
   "sonarlint.ls.javaHome": "/home/verso/.asdf/installs/java/openjdk-17.0.2/",
   "spring-boot.ls.java.home": "/home/verso/.asdf/installs/java/openjdk-17.0.2/",
-  "sonarlint.pathToNodeExecutable": "/usr/bin/node",
+  "sonarlint.pathToNodeExecutable": "/home/verso/.asdf/shims/node",
   "CodeGPT.query.language": "Portuguese",
   "maven.executable.path": "/home/verso/.asdf/installs/maven/3.8.7/bin/mvn",
   "git.openRepositoryInParentFolders": "never",
   "python.languageServer": "Pylance",
   "cSpell.language": "en,pt,pt-BR",
-  "typescript.npm": "/home/verso/.asdf/shims/npm",
   "code-runner.executorMapByFileExtension": {
     ".vb": "cd $dir && vbc /nologo $fileName && $dir$fileNameWithoutExt",
     ".vbs": "cscript //Nologo",
@@ -117,12 +162,12 @@
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-1.8",
-      "path": "/home/verso/.asdf/installs/java/adoptopenjdk-8.0.382+5",
+      "path": "/home/verso/.asdf/installs/java/adoptopenjdk-8.0.392+8"
     },
     {
       "name": "JavaSE-17",
-      "path": "/home/verso/.asdf/installs/java/openjdk-17.0.2",
-    },
+      "path": "/home/verso/.asdf/installs/java/openjdk-17.0.2"
+    }
   ],
   "cSpell.userWords": [
     "adoptopenjdk",
@@ -158,11 +203,20 @@
     "Weverson",
     "widsl"
   ],
-  "explorer.confirmDragAndDrop": false,
   "sonarlint.rules": {
     "java:S5976": {
       "level": "off"
+    },
+    "java:16778128": {
+      "level": "off"
+    },
+    "java:S2629": {
+      "level": "off"
+    },
+    "java:S107": {
+      "level": "off"
     }
   },
-  "workbench.editor.empty.hint": "hidden"
+  "sonarlint.focusOnNewCode": true,
+  "liveshare.accessibility.voiceEnabled": false
 }

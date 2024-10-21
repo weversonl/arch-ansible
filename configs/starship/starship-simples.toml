@@ -15,7 +15,7 @@ $java\
 $docker_context\
 $container\
 $shell\
-$cmd_duration $time\
+$cmd_duration $jobs $time\
 $line_break\
 $character"""
 
@@ -28,13 +28,6 @@ read_only = " "
 truncation_length = 4
 truncate_to_repo = true
 
-[directory.substitutions]
-# "Home" = "AA"
-#"Documentos" = " "
-#"Downloads" = " "
-#"Música" = " "
-#"Imagens" = " "
-
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
@@ -45,12 +38,12 @@ symbol = " "
 format = "[$symbol$branch]($style) "
 style = "bright-black"
 
-#[jobs]
-#symbol = ""
-#style = "bold red"
-#number_threshold = 4
-#symbol_threshold = 0
-#format = "[$symbol]($style)"
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 4
+symbol_threshold = 0
+format = "[$symbol]($style)"
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
@@ -73,10 +66,9 @@ style = "yellow"
 
 [time]
 disabled = false
-style = "white bold"
+style = "bold white"
 time_format = "%H:%M:%S"
-#time_format = "%R"
-format = " [$time]($style)"
+format = "[$time]($style)"
 utc_time_offset = '-3'
 
 # [custom.stunnel]
@@ -159,7 +151,7 @@ symbol = " "
 
 [python]
 symbol = " "
-format = '[${symbol} ]($style)'
+format = '[${symbol}python ]($style)'
 style = "bold yellow"
 detect_extensions = ["py"]
 version_format = "v${raw}"

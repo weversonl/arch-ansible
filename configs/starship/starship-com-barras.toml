@@ -1,0 +1,151 @@
+format = """
+[░▒▓](#a3aed2)\
+[  ](bg:#a3aed2 fg:#090c0c)\
+[](bg:#769ff0 fg:#a3aed2)\
+$directory\
+[](fg:#769ff0 bg:#394260)\
+$git_branch\
+$git_status\
+[](fg:#394260 bg:#212736)\
+$java\
+$nodejs\
+$rust\
+$nodejs\
+$python\
+$java\
+$docker_context\
+$container\
+[](fg:#212736 bg:#1d2230)\
+$time\
+[ ](fg:#1d2230)\
+$fill\
+$cmd_duration\
+\n$character"""
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[directory]
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[ $path ]($style)"
+truncation_length = 3
+# truncation_symbol = "…/"
+truncate_to_repo = true
+
+[directory.substitutions]
+# "Home" = "AA"
+"Documentos" = " "
+"Downloads" = " "
+"Música" = " "
+"Imagens" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+
+# [git_state]
+# format = '\([$state( $progress_current/$progress_total)]($style)\) '
+# style = "bright-black"
+
+[nodejs]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[golang]
+symbol = "ﳑ"
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[php]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[java]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+detect_extensions = ["java", "jar"]
+
+[julia]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+
+[elixir]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+
+[elm]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+
+[python]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+detect_extensions = ["py"]
+
+[ruby]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+
+[scala]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol($version)](fg:#769ff0 bg:#212736)]($style)'
+
+[shell]
+zsh_indicator = ''
+unknown_indicator = 'mystery shell'
+style = 'cyan bold'
+disabled = true
+
+[localip]
+ssh_only = true
+format = '@[$localipv4](bold red) '
+disabled = true
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+utc_time_offset = '-3'
